@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Connexion ou Inscription </title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href=" {% static 'assets/css/styleloginsignup.css' %} ">
+                
+        <!-- Boxicons CSS -->
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>  
+    </head>
+    <body>
+        <section class="container forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header><h3>CONNEXION</h3></header>
+                    <form action="{% url 'loginsignup' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="checkbox" name="is_connexion" id="" hidden checked>
+                        <div class="field input-field">
+                            <input type="text" name="mail" placeholder="Email" class="input">
+                        </div>
+    
+                        <div class="field input-field">
+                            <input type="password" name="password1" placeholder="Password" class="password">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+    
+                        <div class="form-link">
+                            <a href="#" class="forgot-pass">Mot de passe Oublié?</a>
+                        </div>
+    
+                        <div class="field button-field">
+                            <button>CONNECTER</button>
+                        </div>
+                    </form>
+    
+                    <div class="form-link">
+                        <span>Je n'ai pas un compte? <a href="#" class="link signup-link">S'inscrire</a></span>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Signup Form -->
+    
+            <div class="form signup">
+                <div class="form-content">
+                    <header><h3>INSCRIPTION</h3></header>
+                    <form action="{% url 'loginsignup' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="checkbox" name="is_sign" id="" hidden>
+                        <div class="field input-field">
+                            <input type="text" name="nom" placeholder="Nom" class="input">
+                        </div>
+    
+                        <div class="field input-field">
+                            <input type="text" name="prenom" placeholder="Prénom" class="input">
+                        </div>
+    
+                        <div class="field input-field">
+                            <input type="text" name="poste" placeholder="Poste" class="input">
+                        </div>
+    
+                        <div class="field input-field">
+                            <input type="email" name="mail" placeholder="Email" class="input">
+                        </div>
+    
+                        <div class="field input-field">
+                            <input type="password" name="password1" placeholder="Create password" class="password">
+                        </div>
+    
+                        <div class="field input-field">
+                            <input type="password" name="password2" placeholder="Confirm password" class="password">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+    
+                        <div class="field button-field">
+                            <button>S'INSCRIRE</button>
+                        </div>
+                    </form>
+    
+                    <div class="form-link">
+                        <span>J'ai un compte? <a href="#" class="link login-link">Connecter</a></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- JavaScript -->
+        <script src=" {% static 'assets/js/scriptloginsignup.js' %} "></script>
+    </body>
+</html>

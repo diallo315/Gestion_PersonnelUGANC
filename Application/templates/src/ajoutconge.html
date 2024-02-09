@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+    Formulaire d'inscription 
+
+    
+{% endblock title %}
+
+
+{% block content %}
+    <form action="{% url 'ajoutconge' %}" method="POST" id="Ajoutconge">
+        {% csrf_token %}
+        <h1>AJOUTER UN CONGE</h1>
+
+        <label for="matricule">Matricule du personnel</label>
+        <input type="text" placeholder="Entrez le matricule du personnel" name="matricule" required>
+
+        <label for="typeconge">Type de Congé</label>
+        <input type="text" placeholder="Entrez le Type du Congé " name="typeconge" required>
+        
+        <label for="dateD">Date de Début</label>
+        <input type="date" placeholder="Entrez la date Début " name="dateD" required>
+       
+        <label for="dateF">Date de Fin</label>
+        <input type="date" placeholder="Entrez la date de Fin" name="dateF" required>
+       
+        <label>
+            <input type="checkbox" name="remember"> Confirmé l'ajout du congés
+        </label>
+
+        <button type="submit">AJOUTER</button>
+        <button type="button" class="cancel" onclick="cancelForm()">ANNULER</button>
+    </form>
+{% endblock content %}
+    

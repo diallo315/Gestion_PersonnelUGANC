@@ -1,0 +1,88 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+    Document du personnel 
+{% endblock title %}
+
+
+{% block styles %}
+#containerDocument {
+    background-color: #f5f3f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Ajuster la largeur du formulaire selon les besoins */
+    max-width: 90%;
+    margin: auto;
+  }
+{% comment %} .documentContainer header {
+    background-color: #5b0d28;
+    color: white;
+    padding: 8px;
+    text-align: center;
+  } {% endcomment %}
+  
+  .documentContainer nav {
+    background-color: #fff7ed;
+    border: 1px solid #ccc;
+    border-radius: 8px;   
+    width: 93%;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  .documentContainer nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .documentContainer nav ul li {
+    margin-bottom: 10px;
+  }
+  
+  .documentContainer nav ul li a {
+    display: block;
+    width: 93%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #5b0d28;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .documentContainer nav ul li a:hover {
+    background-color: #5b0d28;
+    color: white;
+  }
+{% endblock styles %}
+    
+{% block content %}
+<div class="w3-container">
+    <h2 style="font-weight: bold; text-align:center; margin-top:20px">L'ensemble des Documents du Personnels </h2>
+</div>
+<div id="containerDocument">
+    <div class="documentContainer">
+        <header>
+            <h3>FACULTES DES SCIENCES</h3>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#">DECANAT</a></li>
+                <li><a href="#">DEPARTEMENT DE PHYSIQUE</a></li>
+                <li><a href="#">DEPARTMENT DE CHIMIE</a></li>
+                <li><a href="#">DEPARTEMENT DE BIOLOGIE</a></li>
+                <li><a href="#">DEPARTEMENT DE MATHEMATIQUE</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock content %}
+    

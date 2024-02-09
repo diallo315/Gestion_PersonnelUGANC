@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+    Formulaire d'inscription 
+
+    
+{% endblock title %}
+
+
+{% block content %}
+    <form id="InscritFormation">
+        {% csrf_token %}
+        <h1>INSCRIPTION A UNE FORMATION</h1>
+
+        <label for="nomprogramme">Programme de la Formation</label>
+        <input type="text" placeholder="Entrez le Nom du Programme" name="nomprogramme" required>
+
+        <label for="matricule">Matricule du Personnel</label>
+        <input type="text" placeholder="Entrez le matricule du personnel" name="matricule" required>
+        
+        <label for="dateD">Date de Début</label>
+        <input type="date" placeholder="Entrez la date Début " name="dateD" required>
+       
+        <label for="dateF">Date de Fin</label>
+        <input type="date" placeholder="Entrez la date de Fin" name="dateF" required>
+       
+        <label>
+            <input type="checkbox" name="remember"> Confirmé l'inscription du formation
+        </label>
+
+        <button>INSCRIRE</button>
+        <button type="button" class="cancel" onclick="cancelForm()">ANNULER</button>
+    </form>
+{% endblock content %}
+     

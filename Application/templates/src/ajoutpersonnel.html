@@ -1,0 +1,84 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+    Ajouter un Fonctionnaire
+{% endblock title %}
+
+{% block content %}
+<div>
+    <div id="AjoutPersonnelForm">
+        <form action="{% url 'ajoutpersonnel' %}" method="POST">
+            {% csrf_token %}
+            <h1>AJOUTER UN FONCTIONNAIRE</h1>
+            <label for="image">Ajoutez l'Image du Profil</label>
+            <input type="file" name="image" required>
+    
+            <label for="matricule">Matricule</label>
+            <input type="text" placeholder="Entrez le matricule" name="matricule" required>
+    
+            <label for="nom">Nom</label>
+            <input type="text" placeholder="Entrez le nom" name="nom" required>
+    
+            <label for="prenom">Prénom</label>
+            <input type="text" placeholder="Entrez le prénom" name="prenom" required>
+    
+            <label for="sexe">Sexe</label>
+            <select name="sexe" class="selectFilter">
+                <option value="Masculin">M</option>
+                <option value="Féminin">F</option>            
+            </select>
+    
+            <label for="dateN">Date de Naissance</label>
+            <input type="date" placeholder="Entrez la date de Naissance" name="dateN" required>
+    
+            <label for="lieuN">Lieu de Naissance</label>
+            <input type="text" placeholder="Entrez le lieu de Naissance" name="lieuN" required>
+    
+            <label for="email">E-mail</label>
+            <input type="email" placeholder="Entrez le Gmail" name="email" required>
+    
+            <label for="tel">Téléphone</label>
+            <input type="text" placeholder="Entrez le numéro de Téléphone" name="tel" required>
+    
+            <label for="hierarchie">Hiérarchie</label>
+            <select name="hierarchie" class="selectFilter">
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>            
+                <option value="A3">A3</option>
+                <option value="B1">B1</option>            
+                <option value="B2">B2</option>            
+                <option value="C">C</option>
+                <option value="CP">CP</option>            
+            </select>
+    
+            <label for="fonction">Fonction</label>
+            <input type="text" placeholder="Entrez la fonction" name="fonction" required>
+    
+            <label for="grade">Grade Académique</label>
+            <input type="text" placeholder="Entrez le grade Académique" name="grade" required>
+    
+            <label for="diplome">Diplôme</label>
+            <input type="file" name="diplome" required>
+    
+            <label for="salaire">Salaire</label>
+            <input type="text" placeholder="Entrez le salaire" name="salaire" required>
+    
+            <label for="service">Service</label>
+            <input type="text" placeholder="Entrez le service" name="service" required>
+    
+            <label for="Observation">Observation</label>
+            <input type="text" placeholder="Entrez l'observation" name="observation" required>
+    
+            <label>
+                <input type="checkbox" name="remember"> Êtes-vous sûr d'avoir renseigné des bonnes informations
+            </label>
+    
+            <button type="submit">AJOUTER</button>
+            <button type="reset" class="cancel">RETOUR</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+    
+    
