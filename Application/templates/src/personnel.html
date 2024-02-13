@@ -5,37 +5,39 @@
 {% endblock title %}
 
 {% block styles %}
-    .tablePersonnel {
-        border-collapse: collapse;
-        width: 100%;
-        margin: auto;
-    }
+.tablePersonnel {
+    border-collapse: collapse;
+    width: 100%;
+    margin: auto;
+}
 
-    .tableContainer h4, .tableContainer h6 {
-        font-weight: bold;
-        text-align:center;
-    }
+.tableContainer h4, .tableContainer h6 {
+    font-weight: bold;
+    text-align:center;
+}
 
-    .tablePersonnel th, .tablePersonnel td {
-        border: 1px solid #555353;
-        text-align: center;
-        padding: 8px;
-    }
+.tablePersonnel th, .tablePersonnel td {
+    border: 1px solid #555353;
+    text-align: center;
+    padding: 8px;
+}
 
-    .tablePersonnel th {
-        background-color: #5b0d28;
-        color: white;
-    }
-    .tableContainer {
-        margin: auto;
-    }
+.tablePersonnel th {
+    background-color: #5b0d28;
+    color: white;
+}
+.tableContainer {
+    margin: auto;
+}
 
     
 .inputPersonne {
     padding: 8px;
     margin-bottom: 0px;
-    width: 200px;
+    width: 400px;
+    border-radius:5px;
 }
+
 
 .buttonSearchPersonnel {
     padding: 8px;
@@ -53,10 +55,10 @@
     <div class="w3-container">
         <h2 style="font-weight: bold; text-align:center; margin-top:20px">GESTION PERSONNEL </h2>
         <div class="ContainerRechercher" style="display:flex; flex-direction:column">
-            <div>
+            {% comment %} <div>
                 <a href="{% url 'ajoutpersonnel' %}"><button class="w3-right" style="padding: 8px;
                     margin-bottom: 10px; width: 100px;">AJOUTER</button></a>
-            </div>
+            </div> {% endcomment %}
             <div>
                 <form action="" class="formContainer w3-right" >
                     <input type="text" placeholder="Rechercher..." class="inputPersonne">
@@ -106,7 +108,7 @@
                                         <td>{{personnel.specialite}}</td>
                                         <td>{{personnel.statut}}</td>
                                         <td>{{personnel.categorie.nomcategorie}}</td>
-                                        <td style="text-align:center;"><a href="#" style=" color:blue" class="fa fa-eye fa-fw"></a><a href="#"  class="fa fa-pencil fa-fw"></a><a  href="#" class="fa fa-trash fa-fw"></a></td>
+                                        <td style="text-align:center;"><a href="{% url 'detailspersonnel' personnel.id %}" style=" color:blue" class="fa fa-eye fa-fw">{% comment %}</a><a href="#"  class="fa fa-pencil fa-fw"></a><a  href="#" class="fa fa-trash fa-fw"></a>{% endcomment %}</td>
                                     </tr>
                                     {% endif %}
                                 {% endfor %}

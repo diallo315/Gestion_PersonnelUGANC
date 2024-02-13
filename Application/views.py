@@ -181,62 +181,14 @@ def personnel(request):
     }
     return render(request, 'src/personnel.html', context)
 
-#===============================AJOUT D'UN FONCTIONNAIRE===================================================#
-def ajoutpersonnel(request):
-    personnel_existant = ""
-    personnel_enregistrer = ""
-    if request.method == 'POST':
-        nom = request.POST.get("nom")
-        prenom = request.POST.get("prenom")
-        matricule = request.POST.get("matricule")
-        hierarchie = request.POST.get("hierarchie")
-        fonction = request.POST.get("fonction")
-        grade = request.POST.get("grade")
-        sexe = request.POST.get("sexe")
-        diplome = request.POST.get("diplome")
-        telephone = request.POST.get("tel")
-        email = request.POST.get("email")
-        dateNaissance = request.POST.get("dateN")
-        lieuNaissance = request.POST.get("lieuN") 
-        photo = request.POST.get("photo")
-        salaire = request.POST.get("salaire")
-        service = request.POST.get("service")
-        observation = request.POST.get("observation")
-        verifie_matricule = Personnel.objects.filter(matricule = matricule)
-        if verifie_matricule.exists():
-            personnel_existant = "Le personnel existe déjà !"
-            print(personnel_existant)
-            # return render(request, 'src/personnel.html', {'personnel_existe': personnel_existant})
-        else:
-            personnel = Personnel(
-                nom = nom,
-                prenom = prenom,
-                matricule = matricule,
-                sexe = sexe,
-                hierarchie = hierarchie,
-                fonction = fonction,
-                grade = grade,
-                diplome = diplome, 
-                telephone = telephone,
-                email = email,
-                dateNaissance = dateNaissance,
-                lieuNaissance = lieuNaissance,
-                photo = photo,
-                salaire = salaire,
-                service = service,
-                observation = observation
-                
-            )
-            personnel.save()
-            personnel_enregistrer = "Personnel enregistrer avec succès !"
-            print(personnel_enregistrer)
-            return redirect('personnel')
+#==================================DETAILS D'UN PERSONNEL ============================================#
+def detailspersonnel(request, id):
+    personnel = Personnel.objects.get(id = id)
     context = {
-        'personnel_enregistrer' : personnel_enregistrer,
-        'personnel_existant' : personnel_existant,
+        'personnel' : personnel, 
     }
-        
-    return render(request, 'src/ajoutpersonnel.html', context)
+    return render(request, 'src/detailspersonnel.html', context)
+
 
 #===============================DOCUMENT ===================================================#
 def doucument(request):
@@ -246,8 +198,55 @@ def doucument(request):
     }
     return render(request, 'src/document.html', context)
 
-def categorieag(request):
-    return render(request, 'src/categorieAG.html')
+#===============================DOCUMENT ADMINISTRATIF GENERAL ===================================================#
+def categorieag(request, id):
+    administrationgeneral = AdministrationGeneral.objects.get(id = id)
+    categorie = Categorie.objects.filter(administrationGeneral = administrationgeneral)
+    context = {
+        'categories' : categorie,
+        'administrationgeneral' : administrationgeneral,
+    }
+    return render(request, 'src/categorieAG.html', context)
+
+#===============================DOCUMENT CATEGORIE ===================================================#
+def documentCAT(request):
+    return render(request, 'src/documentCAT.html')
+
+#===============================DOCUMENT GENERE ===================================================#
+def genereDocL(request, id):
+    tlettre = TypeLettre.objects.get(id=id)
+    context = {
+        'tlettre' : tlettre,
+    }
+    return render(request, 'src/genereDocL.html', context)
+
+#===============================DOCUMENT GENERE ===================================================#
+def genereDocB(request, id):
+    tbanque = TypeBanque.objects.get(id = id)
+    context = {
+        'tbanque':tbanque,
+    }
+    return render(request, 'src/genereDocB.html', context)
+
+#===================================DOCUMENT ANALYTIQUE===================================#
+def documentanalytique(request):
+    tlettre = TypeLettre.objects.all()
+    tbanque = TypeBanque.objects.all()
+    context = {
+        'tlettres':tlettre,
+        'tbanques':tbanque,
+    }
+    return render(request, 'src/documentanalytique.html', context)
+
+#===================================GENERER UN DOCUMENT ===================================#
+def generedocument(request):
+    tlettre = TypeLettre.objects.all()
+    tbanque = TypeBanque.objects.all()
+    context = {
+        'tlettres':tlettre,
+        'tbanques':tbanque,
+    }
+    return render(request, 'src/generedocument.html', context)
 
 #==========================================CONGE ======================================#
 def conge(request):

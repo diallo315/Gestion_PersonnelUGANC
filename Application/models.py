@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 class Utilisateur(AbstractUser):
     poste = models.CharField(max_length=100)
@@ -63,6 +64,8 @@ class Personnel(models.Model):
     categorie = models.ForeignKey(Categorie, on_delete = models.CASCADE)
     date_affectation = models.DateField()
     telephone = models.CharField(max_length=50)
+    def __str__(self):
+        return f'{self.matricule}'
     class Meta:
         db_table = 'T_Personnel'
    
@@ -76,6 +79,37 @@ class Document(models.Model):
     class Meta:
         db_table = 'T_Document'
 
+class TypeLettre(models.Model):
+    nom = models.CharField(max_length = 50)
+    def __str__(self):
+        return f'{self.nom}'
+    class Meta:
+        db_table = 'T_TypeLettre'
+        
+
+class Lettre(models.Model):
+    personnel = models.ForeignKey(Personnel, on_delete = models.CASCADE)
+    typelettre = models.ForeignKey(TypeLettre, on_delete = models.CASCADE)
+    datejour = models.DateField()
+    class Meta:
+        db_table = 'T_Lettre'
+
+class TypeBanque(models.Model):
+    nom = models.CharField(max_length = 50)
+    def __str__(self):
+        return f'{self.nom}'
+    class Meta:
+        db_table = 'T_TypeBanque'
+
+class LettreBanque(models.Model):
+    personnel = models.ForeignKey(Personnel, on_delete = models.CASCADE)
+    nombanque = models.CharField(max_length = 50)
+    numerobanque = models.CharField(max_length = 50)
+    typebanque = models.CharField(max_length = 50)
+    datejour = models.DateField()
+    class Meta:
+        db_table = 'T_LettreBanque'
+
 class Conge(models.Model):
     personnel = models.ForeignKey(Personnel, on_delete=models.CASCADE)
     typeconges = models.CharField(max_length=50)
@@ -83,17 +117,6 @@ class Conge(models.Model):
     dateFin = models.DateField()
     class Meta:
         db_table = 'T_Conge'
-
-class RapportAnalytiques(models.Model):
-    nom = models.CharField(max_length=50)
-    class Meta:
-        db_table = 'T_RapportAnalytiques'
-
-class GenererRapport(models.Model):
-    personnel = models.ForeignKey(Personnel, on_delete = models.CASCADE)
-    rapportanalytique = models.ForeignKey(RapportAnalytiques, on_delete = models.CASCADE)
-    class Meta:
-        db_table = 'T_GenererRapport'
 
 class Formation(models.Model):
     personnel = models.ForeignKey(Personnel, on_delete=models.CASCADE)

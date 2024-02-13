@@ -1,0 +1,34 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+    Formulaire de Générer un Document Autaumatique 
+{% endblock title %}
+
+{% block styles %}
+    .GenereDoc h3{
+        text-align:center;
+    }
+{% endblock styles %}
+    
+
+{% block content %}
+    <form action="{% url 'ajoutconge' %}" method="POST" id="Ajoutconge" class="GenereDoc">
+        {% csrf_token %}
+        <h1>GENERER UN DOCUMENT</h1>
+        <h3>{{tlettre.nom}}</h3>
+
+        <label for="matricule">Matricule du personnel</label>
+        <input type="text" placeholder="Entrez le matricule du personnel" name="matricule" required>
+
+        <label for="dateD">Date du Jour</label>
+        <input type="date" placeholder="Entrez la date jour " name="dateD" required>
+        
+        <input type="checkbox" name="remember">
+        <label> Confirmez-vous la Gestion du Document </label>
+
+        <button type="submit">GENERER</button>
+        <button type="button" class="cancel" onclick="cancelForm()">ANNULER</button>
+    </form>
+{% endblock content %}
+    

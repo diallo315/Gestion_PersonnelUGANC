@@ -16,12 +16,12 @@
     max-width: 90%;
     margin: auto;
   }
-{% comment %} .documentContainer header {
+ .documentContainer header {
     background-color: #5b0d28;
     color: white;
     padding: 8px;
     text-align: center;
-  } {% endcomment %}
+  }
   
   .documentContainer nav {
     background-color: #fff7ed;
@@ -71,15 +71,20 @@
 <div id="containerDocument">
     <div class="documentContainer">
         <header>
-            <h3>FACULTES DES SCIENCES</h3>
+            <h3>{{administrationgeneral.nom}}</h3>
         </header>
         <nav>
             <ul>
-                <li><a href="#">DECANAT</a></li>
-                <li><a href="#">DEPARTEMENT DE PHYSIQUE</a></li>
-                <li><a href="#">DEPARTMENT DE CHIMIE</a></li>
-                <li><a href="#">DEPARTEMENT DE BIOLOGIE</a></li>
-                <li><a href="#">DEPARTEMENT DE MATHEMATIQUE</a></li>
+              
+              {% if categories %}
+                {% for categorie in categories %}
+                  <li><a href="{% url 'documentcat' %}">{{categorie.nomcategorie}}</a></li>
+                {% endfor %}
+                {% else %}
+                <h2>AUNCUNE CATEGORIE N'EST DISPONIBLE POUR {{administrationgeneral.nom}}</h2>
+              {% endif %}
+                
+                
             </ul>
         </nav>
     </div>

@@ -50,7 +50,7 @@ footer{
 </div>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-animate-left" style="z-index:3;width:260px; font-weight:bold; background-color:#fff7ed" id="mySidebar"><br>
+<nav class="w3-sidebar w3-collapse w3-animate-left" style="z-index:3;width:300px; font-weight:bold; background-color:#fff7ed" id="mySidebar"><br>
   <div class="">
     <div class="">
       <a href="#" >
@@ -67,10 +67,10 @@ footer{
   </div>
   <div class="w3-bar-block menu">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Fermer Menu</a>
-    <a href=" {% url 'dashboard' %} " class="w3-bar-item w3-button w3-padding "><i class="fa fa-home fa-fw"></i>  TABLEAU DE BORD</a>
-    <a href="{% url 'personnel' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-male fa-fw"></i>  PERSONNEL</a>
-    <a href="{% url 'document' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw"></i>  DOCUMENT</a>
-    <a href="{% url 'conge' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-car fa-fw"></i>  CONGES</a>
+    <a href=" {% url 'dashboard' %} " class="w3-bar-item w3-button w3-padding "><i class="fa fa-home fa-fw"></i> TABLEAU DE BORD</a>
+    <a href="{% url 'personnel' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-male fa-fw"></i> PERSONNEL</a>
+    <a href="{% url 'document' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw"></i> DOCUMENT</a>
+    <a href="{% url 'conge' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-car fa-fw"></i> CONGES</a>
     <a id="myBtn" onclick="myFunc('Demo1')" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>FORMATION<i class="fa fa-caret-down w3-margin-left"></i></a>
   <div id="Demo1" class="w3-hide w3-animate-left">
     <a href="{% url 'formationcours' %} " class="w3-bar-item w3-button w3-border-bottom test">
@@ -89,16 +89,16 @@ footer{
       </div>
     </a>
   </div>
-    <a id="myBtn" onclick="myFunc('Demo2')" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>RAPPORT ANALYTIQUE<i class="fa fa-caret-down w3-margin-left"></i></a>
+    <a id="myBtn" onclick="myFunc('Demo2')" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>DOCUMENT ADMINISTRATIF<i class="fa fa-caret-down w3-margin-left"></i></a>
   <div id="Demo2" class="w3-hide w3-animate-left">
-    <a href="#" class="w3-bar-item w3-button w3-border-bottom test">
+    <a href="{% url 'documentanalytique' %}" class="w3-bar-item w3-button w3-border-bottom test">
       <div class="w3-container">
-        <span class="w3-opacity w3-large"> <i class="fa fa-refresh "></i> Rapport Générés </span>
+        <span class="w3-opacity w3-large"> <i class="fa fa-refresh "></i> Documents Analytique </span>
       </div>
     </a>
-    <a href="#" class="w3-bar-item w3-button w3-border-bottom test " >
+    <a href="{% url 'generedocument' %}" class="w3-bar-item w3-button w3-border-bottom test " >
       <div class="w3-container">
-        <span class="w3-opacity w3-large"> <i class="fa fa-eye "></i> Généré un Rapport</span>
+        <span class="w3-opacity w3-large"> <i class="fa fa-file "></i> Généré un Document</span>
       </div>
     </a>
   </div>
@@ -107,7 +107,7 @@ footer{
 </nav>
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:260px;margin-top:100px;">
+<div class="w3-main" style="margin-left:300px;margin-top:100px;">
 {% block content %}
   {% comment %} Contenu de la page {% endcomment %}
 {% endblock content %}

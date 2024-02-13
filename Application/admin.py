@@ -39,5 +39,24 @@ class AdministrationGeneral(admin.ModelAdmin):
 @admin.register(Categorie)
 class Categorie(admin.ModelAdmin):
     list_display = ['administrationGeneral', 'nomcategorie']
+    
+@admin.register(TypeBanque)
+class TypeBanque(admin.ModelAdmin):
+    list_display = ['nom']
+
+@admin.register(LettreBanque)
+class LettreBanque(admin.ModelAdmin):
+    list_display = ['personnel', 'nombanque', 'numerobanque', 'typebanque', 'datejour']
+
+    
+@admin.register(TypeLettre)
+class TypeLettre(admin.ModelAdmin):
+    list_display = ['nom']
+    
+@admin.register(Lettre)
+class Lettre(admin.ModelAdmin):
+    list_display = ['personnel', 'typelettre', 'datejour']
+    
+
 
    

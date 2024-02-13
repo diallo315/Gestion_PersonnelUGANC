@@ -1,0 +1,156 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+  page d'index
+{% endblock title %}
+  
+{% block styles %}
+.containerdetaildocument{
+    background-color: #f5f3f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Ajuster la largeur du formulaire selon les besoins */
+    max-width: 90%;
+    margin: auto;
+}
+.w3-quarter{
+    background-color: #f5f3f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Ajuster la largeur du formulaire selon les besoins */
+    max-width: 90%;
+    margin: 5px 10px;
+}
+
+header {
+    background-color: #5b0d28;
+    color: white;
+    padding: 8px;
+    text-align: center;
+  }
+.iconeTelechargement {
+    width:100%;
+    height:30%;
+}
+
+.w3-quarter{
+    margin-top:20px;
+    width:20%;
+}
+.w3-quarter button{
+    width:100%;
+    background: #5b0d28; 
+    border: none;
+    border-radius:8px;
+    color:white;
+    font-weight:bold;
+    padding:10px;
+}
+.w3-quarter button:hover{
+    cursor:pointer;
+    background:grey; 
+    color:black;
+}
+.containercadre{
+    margin:auto;
+}
+{% endblock styles %}
+    
+{% block content %}
+<div class="containerdetaildocument">
+    <header>
+        <h3>Document <b>{{administrationgeneral.nom}}<b></h3>
+    </header>
+    <div class="w3-row-padding w3-margin-bottom containercadre">
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter">
+            <div class="w3-container w3-padding-16">
+                <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
+                <div class="w3-clear"></div>
+                <h4>Enseignants Chercheurs</h4>
+                <h4>Enseignants Chercheurs</h4>
+                <button>Telechargé</button>
+            </div>
+        </div>
+        <div class="w3-quarter" style="margin-top:100px;">
+            <div class="w3-container w3-padding-16">
+                <a href="#" title="Ajouter un Document" class="logoTelechargement"><img src="{% static 'assets/images/iconeajoutDoc.png' %}" class="iconeTelechargement"></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
