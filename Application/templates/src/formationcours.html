@@ -82,9 +82,9 @@
                         <tr>
                             <td> {{formation.personnel.matricule}} </td>
                             <td> {{formation.personnel.nom}} {{formation.personnel.prenom}} </td>
-                            <td>{{formation.programmeFormation}}</td>
-                            <td>{{formation.dateDeb}}</td>
-                            <td> {{formation.dateFin}} </td>
+                            <td>{{formation.programmeFormation.nom}}</td>
+                            <td>{{formation.programmeFormation.dateDeb}}</td>
+                            <td> {{formation.programmeFormation.dateFin}} </td>
                             <td style="text-align:center;"><a style="padding-right:5px" href="#" class="fa fa-refresh fa-fw"></a></td>
                         </tr>
                     {% endfor %}

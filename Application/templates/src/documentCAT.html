@@ -62,7 +62,7 @@ header {
 {% block content %}
 <div class="containerdetaildocument">
     <header>
-        <h3>Document <b>{{administrationgeneral.nom}}<b></h3>
+        <h3><b>DOCUMENT {{categorie.nomcategorie}}<b></h3>
     </header>
     <div class="w3-row-padding w3-margin-bottom containercadre">
         <div class="w3-quarter">
@@ -148,7 +148,7 @@ header {
         </div>
         <div class="w3-quarter" style="margin-top:100px;">
             <div class="w3-container w3-padding-16">
-                <a href="#" title="Ajouter un Document" class="logoTelechargement"><img src="{% static 'assets/images/iconeajoutDoc.png' %}" class="iconeTelechargement"></a>
+                <a href="{% url 'typedocument' categorie.id %}" title="Ajouter un Document" class="logoTelechargement"><img src="{% static 'assets/images/iconeajoutDoc.png' %}" class="iconeTelechargement"></a>
             </div>
         </div>
     </div>

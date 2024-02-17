@@ -24,9 +24,13 @@ class DocumentAdmin(admin.ModelAdmin):
 class CongeAdmin(admin.ModelAdmin):
     list_display = ['personnel', 'typeconges', 'dateDeb', 'dateFin']
 
+@admin.register(ProgrammeFormation)
+class ProgrammeFormationAdmin(admin.ModelAdmin):
+    list_display = ['nom', 'description', 'dateDeb', 'dateFin']
+
 @admin.register(Formation)
 class FormationAdmin(admin.ModelAdmin):
-    list_display =['personnel', 'programmeFormation', 'dateDeb', 'dateFin']
+    list_display =['personnel', 'programmeFormation',]
     
 @admin.register(HFormation)
 class HFormationAdmin(admin.ModelAdmin):
@@ -56,6 +60,10 @@ class TypeLettre(admin.ModelAdmin):
 @admin.register(Lettre)
 class Lettre(admin.ModelAdmin):
     list_display = ['personnel', 'typelettre', 'datejour']
+    
+@admin.register(TypeDocument)
+class TypeDocument(admin.ModelAdmin):
+    list_display = ['typedocument']
     
 
 

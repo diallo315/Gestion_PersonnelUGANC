@@ -78,7 +78,7 @@
               
               {% if categories %}
                 {% for categorie in categories %}
-                  <li><a href="{% url 'documentcat' %}">{{categorie.nomcategorie}}</a></li>
+                  <li><a href="{% url 'documentcat' categorie.id %}">{{categorie.nomcategorie}}</a></li>
                 {% endfor %}
                 {% else %}
                 <h2>AUNCUNE CATEGORIE N'EST DISPONIBLE POUR {{administrationgeneral.nom}}</h2>

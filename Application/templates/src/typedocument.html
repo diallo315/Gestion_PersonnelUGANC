@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block title %}
-    Document Analytique 
+    Type Document 
 {% endblock title %}
 
 
 {% block styles %}
-#containerDocumentAnalytique {
+#containerDocument {
     background-color: #f5f3f4;
     padding: 20px;
     border-radius: 8px;
@@ -16,15 +16,14 @@
     max-width: 90%;
     margin: auto;
   }
-{% comment %} .documentContainer header {
+  .documentContainer header {
     background-color: #5b0d28;
     color: white;
     padding: 8px;
     text-align: center;
-  } {% endcomment %}
-  
-  .DocumentAnalytique nav {
-    background-color: #fff;
+  }
+  .documentContainer nav {
+    background-color: #fff7ed;
     border: 1px solid #ccc;
     border-radius: 8px;   
     width: 93%;
@@ -32,37 +31,24 @@
     padding: 10px;
     margin-top: 20px;
   }
-  .DocumentAnalytique header {
-    background-color: #5b0d28;
-    color: white;
-    padding: 8px;
-    text-align: center;
-  }
   
-  .DocumentAnalytique h2 {
-    text-align: center;
-    font-weight:bold;
-    border-bottom: 3px solid black;
-    margin-bottom: 5%;
-  }
-
-  .DocumentAnalytique nav ul {
+  .documentContainer nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
   }
   
-  .DocumentAnalytique nav ul li {
+  .documentContainer nav ul li {
     margin-bottom: 10px;
   }
   
-  .DocumentAnalytique nav ul li a {
+  .documentContainer nav ul li a {
     display: block;
     width: 93%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    text-align:center;
+    text-align: center;
     text-decoration: none;
     color: #5b0d28;
     font-size: 16px;
@@ -71,27 +57,25 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  .DocumentAnalytique nav ul li a:hover {
+  .documentContainer nav ul li a:hover {
     background-color: #5b0d28;
     color: white;
   }
 {% endblock styles %}
     
 {% block content %}
-<div id="containerDocumentAnalytique">
-    <div class="DocumentAnalytique">
+<div id="containerDocument">
+    <div class="documentContainer">
       <header>
-        <h3>Les Types de Document</h3>
+        <h3>Types de Documents de {{categorie.nomcategorie}}</h3>
     </header>
     <nav>
         <ul>
-            <h2>Pour quel type de lettre ou Document ?</h2> 
-          {% for tlettre in tlettres %}
-            <li><a href="{% url 'genereDocL' tlettre.id %}">{{tlettre.nom}}</a></li>
+          
+          {% for typedocument in typedocuments %}
+            <li><a href="{% url 'ajoutdocument' typedocument.id %}">{{typedocument.typedocument}}</a></li>
           {% endfor %}
-          {% for tbanque in tbanques %}
-            <li><a href="{% url 'genereDocB' tbanque.id %}">{{tbanque.nom}}</a></li>
-          {% endfor %}
+          
         </ul>
     </nav>
     </div>

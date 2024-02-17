@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Application'
 ]
+JAZZMIN_SETTINGS = {
+    "site_title": "CENTRE INFORMATIQUE",
+    "site_logo": "/assets/images/logoCI.jpeg",
+    "site_header": "DIRECTEUR DES RESSOURCES HUMAINES",
+    "show_ui_builder": True,
+    "navigation_expanded": False,
+    "hide_apps": [],
+    "hide_models": [],
+    "order_with_respect_to": [],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.User": "fas fa-user",
+    },
+    "default_ui_layout": "horizontal",
+}
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

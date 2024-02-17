@@ -51,7 +51,7 @@
 
 {% block content %}
 <div class="w3-container">
-    <h2 style="font-weight: bold; text-align:center; margin-top:20px">La Liste des Personnels en Cours de Formation</h2>
+    <h2 style="font-weight: bold; text-align:center; margin-top:20px">Historique des Formations</h2>
     <div class="ContainerRechercher" style="display:flex; flex-direction:column">
         <div>
             <form action="" class="formContainer w3-right" >
@@ -83,9 +83,9 @@
                         <tr>
                             <td> {{Hformation.Formation.Personnel.matricule}} </td>
                             <td> {{Hformation.Formation.Personnel.nom}} {{Hformation.Formation.Personnel.prenom}} </td>
-                            <td>{{Hformation.Formation.prgramme}}</td>
-                            <td>{{Hformation.Formation.dateDeb}}</td>
-                            <td> {{Hformation.Formation.dateFin}} </td>
+                            <td>{{Hformation.Formation.programmeFormation.nom}}</td>
+                            <td>{{Hformation.Formation.programmeFormation.dateDeb}}</td>
+                            <td> {{Hformation.Formation.programmeFormation.dateFin}} </td>
                             <td style="text-align:center;"><a href="#" style="padding-right:5px" class="fa fa-eye fa-fw"></a><a style="padding-right:5px" href="#" class="fa fa-close fa-fw"></a></td>
                         </tr>
                     {% endfor %}

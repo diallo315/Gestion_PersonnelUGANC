@@ -198,6 +198,50 @@ def doucument(request):
     }
     return render(request, 'src/document.html', context)
 
+#===============================TYPE DE DOCUMENT ===================================================#
+def typedocument(request, id):
+    typedocument = TypeDocument.objects.all()
+    categorie = Categorie.objects.get(id = id)
+    context = {
+        'typedocuments' : typedocument,
+        'categorie' : categorie,
+    }
+    return render(request, 'src/typedocument.html', context)
+
+#===============================DOCUMENT ===================================================#
+def ajoutdocument(request, id):
+    matricule_exist =""
+    accept = ""
+    typedocument = TypeDocument.objects.get(id=id)
+    if request.method == "POST":
+        mat = request.POST.get("matricule")
+        nomdoc = request.POST.get("nomdoc")
+        doc = request.POST.get("doc")
+        is_accept = request.POST.get("is_accept")
+        personnel = Personnel.objects.get(matricule = mat)
+        if is_accept:
+            if personnel:
+                document = Document(
+                    personnel = personnel,
+                    nomdocument = nomdoc,
+                    typeDocument = typedocument,
+                    document = doc,
+                    date = timezone.now
+                )
+                document.save()
+                message_success = "Enrgistré avec succès"
+                return render(request, 'src/documentCAT.html', {'message_succes': message_success})
+            else:
+                matricule_exist = "Cette personne n'existe dans votre Base donnée"
+        else:
+            accept = "Confirmé l'ajout du Document"
+    context = {
+        'typedocument' : typedocument,
+        'matricule_exist':matricule_exist,
+        'accept': accept,
+    }
+    return render(request, 'src/ajoutdocument.html', context)
+
 #===============================DOCUMENT ADMINISTRATIF GENERAL ===================================================#
 def categorieag(request, id):
     administrationgeneral = AdministrationGeneral.objects.get(id = id)
@@ -209,8 +253,13 @@ def categorieag(request, id):
     return render(request, 'src/categorieAG.html', context)
 
 #===============================DOCUMENT CATEGORIE ===================================================#
-def documentCAT(request):
-    return render(request, 'src/documentCAT.html')
+def documentCAT(request, id):
+    categorie = Categorie.objects.get(id = id)
+
+    context = {
+        'categorie':categorie,
+    }    
+    return render(request, 'src/documentCAT.html', context)
 
 #===============================DOCUMENT GENERE ===================================================#
 def genereDocL(request, id):

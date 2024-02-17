@@ -1,0 +1,33 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+    Ajouter un Document 
+
+    
+{% endblock title %}
+
+
+{% block content %}
+    <form action="" method="POST" id="Ajoutconge">
+        {% csrf_token %}
+        <h1>Ajouter un Document</h1>
+
+        <label for="matricule">Matricule du personnel</label>
+        <input type="text" placeholder="Entrez le matricule du personnel" name="matricule" required>
+
+        <label for="nomdoc">Nom du document </label>
+        <input type="text" placeholder="Entrez le nom du document " name="nomdoc" required>
+        
+        <label for="doc">Document </label>
+        <input type="file" name="doc" required>
+        
+        <label>
+            <input type="checkbox" name="is_accept"> Confirmé l'ajout du document
+        </label>
+
+        <button type="submit">AJOUTER</button>
+        <button type="button" class="cancel" onclick="cancelForm()">ANNULER</button>
+    </form>
+{% endblock content %}
+    

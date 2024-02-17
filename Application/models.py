@@ -36,7 +36,7 @@ class Categorie(models.Model):
     administrationGeneral = models.ForeignKey(AdministrationGeneral, on_delete = models.CASCADE)
     nomcategorie = models.CharField(max_length=100)
     def __str__(self):
-        return f'{self.administrationGeneral.nom} {self.nomcategorie}'
+        return f'{self.administrationGeneral.nom} - {self.nomcategorie}'
     class Meta:
         db_table = 'T_Categorie'
     
@@ -68,13 +68,19 @@ class Personnel(models.Model):
         return f'{self.matricule}'
     class Meta:
         db_table = 'T_Personnel'
-   
 
+class TypeDocument(models.Model):
+    typedocument = models.CharField(max_length=30)
+    def __str__(self):
+        return f'{self.typedocument}'
+    class Meta:
+        db_table = 'T_Typedocument'
 
 class Document(models.Model):
     personnel = models.ForeignKey(Personnel, on_delete=models.CASCADE)
     nomDocument = models.CharField(max_length=30)
-    typeDocument = models.CharField(max_length=30)
+    document = models.FileField(upload_to='stock_document', max_length=100, blank=True, null=True)
+    typeDocument = models.ForeignKey(TypeDocument, on_delete = models.CASCADE)
     dateEnregistrement = models.DateField()
     class Meta:
         db_table = 'T_Document'
@@ -117,12 +123,23 @@ class Conge(models.Model):
     dateFin = models.DateField()
     class Meta:
         db_table = 'T_Conge'
+        unique_together = ('personnel', 'dateDeb', 'dateFin')
+
+class ProgrammeFormation(models.Model):
+    nom = models.CharField(max_length=50)
+    description = models.CharField(max_length=255, default = '')
+    dateDeb = models.DateField()
+    dateFin = models.DateField()
+    def __str__(self):
+        return f'{self.nom}'
+    class Meta:
+        db_table = 'T_ProgrammeFormation'
 
 class Formation(models.Model):
     personnel = models.ForeignKey(Personnel, on_delete=models.CASCADE)
-    programmeFormation = models.CharField(max_length=30)
-    dateDeb = models.DateField()
-    dateFin = models.DateField()
+    programmeFormation = models.ForeignKey(ProgrammeFormation, on_delete = models.CASCADE)
+    def __str__(self):
+        return f'{self.personnel} - {self.programmeFormation}'
     class Meta:
         db_table = 'T_Formation'
 
