@@ -79,7 +79,7 @@ class TypeDocument(models.Model):
 class Document(models.Model):
     personnel = models.ForeignKey(Personnel, on_delete=models.CASCADE)
     nomDocument = models.CharField(max_length=30)
-    document = models.FileField(upload_to='stock_document', max_length=100, blank=True, null=True)
+    document = models.FileField(upload_to='stock_document/', max_length=100, blank=True, null=True)
     typeDocument = models.ForeignKey(TypeDocument, on_delete = models.CASCADE)
     dateEnregistrement = models.DateField()
     class Meta:

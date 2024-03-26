@@ -81,11 +81,11 @@
                 <tbody>
                     {% for Hformation in Hformations %}
                         <tr>
-                            <td> {{Hformation.Formation.Personnel.matricule}} </td>
-                            <td> {{Hformation.Formation.Personnel.nom}} {{Hformation.Formation.Personnel.prenom}} </td>
-                            <td>{{Hformation.Formation.programmeFormation.nom}}</td>
-                            <td>{{Hformation.Formation.programmeFormation.dateDeb}}</td>
-                            <td> {{Hformation.Formation.programmeFormation.dateFin}} </td>
+                            <td> {{Hformation.formation.personnel.matricule}} </td>
+                            <td> {{Hformation.formation.personnel.nom}} {{Hformation.formation.personnel.prenom}} </td>
+                            <td>{{Hformation.formation.programmeFormation.nom}}</td>
+                            <td>{{Hformation.formation.programmeFormation.dateDeb}}</td>
+                            <td> {{Hformation.formation.programmeFormation.dateFin}} </td>
                             <td style="text-align:center;"><a href="#" style="padding-right:5px" class="fa fa-eye fa-fw"></a><a style="padding-right:5px" href="#" class="fa fa-close fa-fw"></a></td>
                         </tr>
                     {% endfor %}

@@ -1,6 +1,8 @@
 # Application/urls.py
 from django.urls import path
 from .views import *
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('', loginsignup, name='loginsignup'),
     path('dashboard', dashboard, name='dashboard'),
@@ -21,4 +23,10 @@ urlpatterns = [
     path('detailspersonnel/<int:id>', detailspersonnel, name='detailspersonnel'),
     path('ajoutdocument/<int:id>', ajoutdocument, name='ajoutdocument'),
     path('typedocument/<int:id>', typedocument, name='typedocument'),
+    path('delconge/<int:id>/',delete_conge,name="delete_conge"),
+    path('formationTer/<int:id>/', formation_terminer, name="formation_terminer")
 ]
+
+# Ajouter ces lignes pour servir les fichiers médias pendant le développement
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

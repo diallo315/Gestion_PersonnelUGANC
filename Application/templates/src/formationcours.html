@@ -85,7 +85,11 @@
                             <td>{{formation.programmeFormation.nom}}</td>
                             <td>{{formation.programmeFormation.dateDeb}}</td>
                             <td> {{formation.programmeFormation.dateFin}} </td>
-                            <td style="text-align:center;"><a style="padding-right:5px" href="#" class="fa fa-refresh fa-fw"></a></td>
+                            <td style="text-align:center;">
+                                <button>
+                                    <a href="#"  style="padding-right:5px;" >Terminé...</a>
+                                </button>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

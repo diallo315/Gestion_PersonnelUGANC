@@ -1,5 +1,5 @@
 # Application/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render,get_object_or_404, redirect
 from .models import *
 import matplotlib.pyplot as plt
 import io
@@ -255,9 +255,12 @@ def categorieag(request, id):
 #===============================DOCUMENT CATEGORIE ===================================================#
 def documentCAT(request, id):
     categorie = Categorie.objects.get(id = id)
-
+    personnel = Personnel.objects.filter(categorie = categorie)
+    document = Document.objects.filter(personnel__in = personnel)
     context = {
+        'personnels' : personnel,
         'categorie':categorie,
+        'documents' : document,
     }    
     return render(request, 'src/documentCAT.html', context)
 
@@ -300,6 +303,7 @@ def generedocument(request):
 #==========================================CONGE ======================================#
 def conge(request):
     conge = Conge.objects.all()
+       
     context = {
         'conges':conge,
     }
@@ -342,7 +346,11 @@ def inscritformation(request):
 
 #===================================HISTORIQUE ========================================================#
 def historique(request):
-    return render(request, 'src/historique.html')
+    Hformation = HFormation.objects.all()
+    context = {
+        'Hformations':Hformation
+    }
+    return render(request, 'src/historique.html', context)
 
 #=========================================FORMATIONS EN COURS =========================================#
 def formationcours(request):
@@ -365,3 +373,23 @@ def templates(request):
     return render(request, 'template.html')
 
 
+def delete_conge(request, id):
+    conge = Conge.objects.get(id=id)
+    conge.delete()
+    return redirect('conge')
+
+
+def formation_terminer(request, id):
+    print("je suis dedans")
+    formationcours = get_object_or_404(Formation,id=id)
+    print("je suis passe ici")
+    try:
+
+        formation = HFormation.create(formationcours)
+        print("je suis passe encors ")
+        formation.save()
+        print("j'ai enregistrer")
+    except:
+        message_erreur = "Enregistrement échoué"
+    formationcours.delete()
+    return redirect('formationcours')

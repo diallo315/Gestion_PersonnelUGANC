@@ -61,14 +61,14 @@
             </div> {% endcomment %}
             <div>
                 <form action="" class="formContainer w3-right" >
-                    <input type="text" placeholder="Rechercher..." class="inputPersonne">
+                    <input type="text" placeholder="Rechercher..." class="inputPersonne" id="searchInput">
                     <select name="" id="" class="selectFilter">
                         <option value="">Tous</option>
                         <option value="">Administration Générale</option>
                         <option value="">Facultés</option>
                         <option value="">Matricule</option>
                     </select>
-                    <button class="buttonSearchPersonnel">RECHERCHER</button>
+                    <button onclick="filterTable()" class="buttonSearchPersonnel">RECHERCHER</button>
                 </form>
             </div>
         </div>
@@ -94,7 +94,7 @@
                                     <th>Statut </th>
                                     <th>Catégorie </th>
                                     <th>Action</th>
-                                </tr>
+                              </tr>
                             </thead>
                             <tbody>
                                 {% for personnel in personnels %}
