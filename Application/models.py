@@ -39,6 +39,7 @@ class Categorie(models.Model):
         return f'{self.administrationGeneral.nom} - {self.nomcategorie}'
     class Meta:
         db_table = 'T_Categorie'
+        unique_together = ('administrationGeneral', 'nomcategorie')
     
 class Statut(models.Model):
     nom = models.CharField(max_length = 50)
@@ -68,6 +69,7 @@ class Personnel(models.Model):
         return f'{self.matricule}'
     class Meta:
         db_table = 'T_Personnel'
+        unique_together = ('matricule',)
 
 class TypeDocument(models.Model):
     typedocument = models.CharField(max_length=30)
@@ -142,6 +144,7 @@ class Formation(models.Model):
         return f'{self.personnel} - {self.programmeFormation}'
     class Meta:
         db_table = 'T_Formation'
+        unique_together = ('personnel',)
 
 class HFormation(models.Model):
     formation = models.ForeignKey(Formation, on_delete=models.CASCADE)

@@ -11,10 +11,11 @@
     margin: auto;
 }
 
-.tableContainer h4, .tableContainer h6 {
+.tableContainer h3, .tableContainer h6 {
     font-weight: bold;
     text-align:center;
 }
+
 
 .tablePersonnel th, .tablePersonnel td {
     border: 1px solid #555353;
@@ -77,7 +78,7 @@
         {% for adminG in administrationGenerals %}
     
             <div style="margin-bottom: 20px;" class="tableContainer">
-                <h4>{{adminG.nom}}</h4>
+                <h3><u>{{adminG.nom}}</u></h3>
                 
                 {% for categorie in categories %}
                     {% if categorie.administrationGeneral.nom == adminG.nom %}
