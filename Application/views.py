@@ -170,7 +170,7 @@ def loginsignup(request):
 
     return render(request, 'loginSignup.html', context)
 #==================================PERSONNEL ============================================#
-def personnel(request):
+def personnel(request): 
     personnel = Personnel.objects.all()
     administrationGeneral = AdministrationGeneral.objects.all()
     categorie = Categorie.objects.all()

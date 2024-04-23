@@ -61,13 +61,13 @@
                     margin-bottom: 10px; width: 100px;">AJOUTER</button></a>
             </div> {% endcomment %}
             <div>
-                <form action="" class="formContainer w3-right" >
+                <form action="" class="formContainer w3-right" method="post">
                     <input type="text" placeholder="Rechercher..." class="inputPersonne" id="searchInput">
                     <select name="" id="" class="selectFilter">
-                        <option value="">Tous</option>
-                        <option value="">Administration Générale</option>
-                        <option value="">Facultés</option>
-                        <option value="">Matricule</option>
+                        <option value="all">Tous</option>
+                        <option value="ag">Administration Générale</option>
+                        <option value="faculte">Facultés</option>
+                        <option value="matricule">Matricule</option>
                     </select>
                     <button onclick="filterTable()" class="buttonSearchPersonnel">RECHERCHER</button>
                 </form>
