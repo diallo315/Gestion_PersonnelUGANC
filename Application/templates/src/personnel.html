@@ -61,15 +61,16 @@
                     margin-bottom: 10px; width: 100px;">AJOUTER</button></a>
             </div> {% endcomment %}
             <div>
-                <form action="" class="formContainer w3-right" method="post">
-                    <input type="text" placeholder="Rechercher..." class="inputPersonne" id="searchInput">
-                    <select name="" id="" class="selectFilter">
+                <form action="{% url 'personnel' %}" class="formContainer w3-right" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="searchField" placeholder="Rechercher..." class="inputPersonne" id="searchInput">
+                    <select name="cat" id="" class="selectFilter">
                         <option value="all">Tous</option>
                         <option value="ag">Administration Générale</option>
                         <option value="faculte">Facultés</option>
                         <option value="matricule">Matricule</option>
                     </select>
-                    <button onclick="filterTable()" class="buttonSearchPersonnel">RECHERCHER</button>
+                    <button type="submit" class="buttonSearchPersonnel">RECHERCHER</button>
                 </form>
             </div>
         </div>

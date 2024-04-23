@@ -171,9 +171,32 @@ def loginsignup(request):
     return render(request, 'loginSignup.html', context)
 #==================================PERSONNEL ============================================#
 def personnel(request): 
-    personnel = Personnel.objects.all()
-    administrationGeneral = AdministrationGeneral.objects.all()
-    categorie = Categorie.objects.all()
+    
+    if request.method == "POST":
+        cat = request.POST.get('cat')
+        searchField = request.POST.get('searchField')
+
+        if cat == "ag":
+            administrationGeneral = AdministrationGeneral.objects.filter(nom=searchField)
+            personnel = Personnel.objects.all()
+            categorie = Categorie.objects.all()
+        elif cat == "matricule":
+            administrationGeneral = AdministrationGeneral.objects.all()
+            personnel = Personnel.objects.filter( matricule = searchField)
+            categorie = Categorie.objects.all()
+        elif cat == "faculte":
+            administrationGeneral = AdministrationGeneral.objects.all()
+            personnel = Personnel.objects.all()
+            categorie = Categorie.objects.filter(nomcategorie = searchField)
+        else:
+            personnel = Personnel.objects.all()
+            administrationGeneral = AdministrationGeneral.objects.all()
+            categorie = Categorie.objects.all()
+    else:
+        personnel = Personnel.objects.all()
+        administrationGeneral = AdministrationGeneral.objects.all()
+        categorie = Categorie.objects.all()
+    
     context = {
         'personnels' : personnel, 
         'administrationGenerals' : administrationGeneral,
