@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @page {
+            size: A4 landscape; /* Définit la taille de la page en format paysage A4 */
+            margin: 20mm 10mm; /* Définit les marges de la page */
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .tablePersonnel {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .tablePersonnel th, .tablePersonnel td {
+            border: 1px solid #555353;
+            text-align: center;
+            padding: 8px;
+        }
+        .tablePersonnel th {
+            background-color: grey;
+            color: white;
+            font-size: 14px;
+            width: auto;
+            height: auto;
+        }
+        .tableContainer {
+            margin: auto;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        h3, h6 {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Personnel de l'universite Gamal Abdel Nasser de Conakry</h1>
+
+    {% for adminG in administrationGenerals %}
+    
+            <div class="tableContainer">
+                <h3>{{adminG.nom}}</h3>
+                
+                {% for categorie in categories %}
+                    {% if categorie.administrationGeneral.nom == adminG.nom %}
+                        <h6>{{categorie.nomcategorie}}</h6>
+                        <table class="tablePersonnel" id="myTable">
+                            <thead>
+                                <tr>
+                                    <th>Matricule</th>
+                                    <th>Nom et Prénom</th>
+                                    <th>Sexe</th>
+                                    <th>Hiérarchie</th>
+                                    <th>Fonction</th>
+                                    <th>Spécialité </th>
+                                    <th>Statut </th>
+                                    <th>Catégorie </th>
+                                    <th>Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {% for personnel in personnels %}
+                                    {% if personnel.categorie.nomcategorie == categorie.nomcategorie %}
+                                    <tr>
+                                        <td>{{personnel.matricule}}</td>
+                                        <td>{{personnel.nom}} {{personnel.prenom}}</td>
+                                        <td>{{personnel.sexe}}</td>
+                                        <td>{{personnel.hierarchie}}</td>
+                                        <td>{{personnel.fonction}}</td>
+                                        <td>{{personnel.specialite}}</td>
+                                        <td>{{personnel.statut}}</td>
+                                        <td>{{personnel.categorie.nomcategorie}}</td>
+                                        <td><a href="{% url 'detailspersonnel' personnel.id %}" style="color: blue;" class="fa fa-eye fa-fw"></a><a href="#" class="fa fa-pencil fa-fw"></a><a href="#" class="fa fa-trash fa-fw"></a></td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                {% endfor %}    
+            </div>
+
+        {% endfor %}
+</body>
+</html>

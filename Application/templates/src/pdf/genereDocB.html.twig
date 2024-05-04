@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generer un Document ! </title>
+    <style>
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head> 
+<body>
+    <div class="container">
+        <h2>Type de lettre :  </h2> <span>{{lBancaire.typebanque.nom}}</span>
+        <h4>Nom du proprietaire : </h4><span>{{lBancaire.personnel.nom}} {{lBancaire.personnel.prenom}}</span>
+        <h4>Matricule : </h4> <span>{{lBancaire.personnel.matricule}}</span>
+        <h4>Nom de la Banque : </h4> <span>{{lBancaire.nombanque}}</span>
+        <h4>Numero de la Banque : </h4> <span>{{lBancaire.numerobanque}}</span>
+        <h4>Fonction : </h4><span>{{lBancaire.personnel.fonction}}</span>
+        <h4>Date du Jour : </h4> <span>{{lBancaire.datejour}}</span>
+    </div>
+</body>
+</html>

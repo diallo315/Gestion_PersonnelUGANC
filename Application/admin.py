@@ -34,7 +34,7 @@ class FormationAdmin(admin.ModelAdmin):
     
 @admin.register(HFormation)
 class HFormationAdmin(admin.ModelAdmin):
-    list_display =['formation','observation']
+    list_display =['personnel','programmeFormation','observation']
     
 @admin.register(AdministrationGeneral)
 class AdministrationGeneral(admin.ModelAdmin):

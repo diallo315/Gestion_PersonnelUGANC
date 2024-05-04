@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2; /* Ajoute un fond de couleur à la page */
+        }
+        .containerdetailsPersonnel {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajoute une ombre à la boîte */
+        }
+        .content {
+            display: inline-flex;
+            justify-content: space-between;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .title {
+            font-size: 24px;
+            margin-bottom: 5px;
+            
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #666; /* Change la couleur du sous-titre */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd; /* Ajoute une bordure autour du tableau */
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Ajoute une bordure entre les lignes */
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        td {
+            background-color: #fff;
+        }
+        th:first-child,
+        td:first-child {
+            border-left: 1px solid #ddd; /* Ajoute une bordure à gauche */
+        }
+        th:last-child,
+        td:last-child {
+            border-right: 1px solid #ddd; /* Ajoute une bordure à droite */
+        }
+    </style>
+</head>
+<body>
+    <div class="containerdetailsPersonnel">
+        <header class="content">
+            <div>
+                <img class="left" width="40%" height="50%" src="{% static 'assets/images/GAMAL.jpeg' %}" alt="Logo Gauche">
+            </div>
+            <div class="center">
+                <h1 class="title">REPUBLIQUE DE GUINEE</h1>
+                <h2 class="subtitle">Travail - Justice - Solidarité</h2>
+            </div>
+            <div>
+                <img class="right" width="40%" height="50%" src="{% static 'assets/images/logoCI.jpeg' %}" alt="Logo Droite"/>
+            </div>
+            
+        </header>
+        
+
+        <table>
+        <caption>Détails du Personnel</caption>
+        <tr>
+            <th>MATRICULE</th>
+            <td>{{personnel.matricule}}</td>
+        </tr>
+        <tr>
+            <th>NOM</th>
+            <td>{{personnel.nom}}</td>
+        </tr>
+        <tr>
+            <th>PRENOM</th>
+            <td>{{personnel.prenom}}</td>
+        </tr>
+        <tr>
+            <th>SEXE</th>
+            <td>{{personnel.sexe}}</td>
+        </tr>
+        <tr>
+            <th>HIERARCHIE</th>
+            <td>{{personnel.hierarchie}}</td>
+        </tr>
+        <tr>
+            <th>FONCTION</th>
+            <td>{{personnel.fonction}}</td>
+        </tr>
+        <tr>
+            <th>SPECIALITE</th>
+            <td>{{personnel.specialite}}</td>
+        </tr>
+        <tr>
+            <th>N° AFFECTATION</th>
+            <td>{{personnel.no_acte_affectation}}</td>
+        </tr>
+        <tr>
+            <th>GRADE</th>
+            <td>{{personnel.grade}}</td>
+        </tr>
+        <tr>
+            <th>DIPLÔME</th>
+            <td>{{personnel.diplome}}</td>
+        </tr>
+        <tr>
+            <th>DATE DE NAISSANCE</th>
+            <td>{{personnel.dateNaissance}}</td>
+        </tr>
+        <tr>
+            <th>DATE D'ENREGISTREMENT</th>
+            <td>{{personnel.date_enregistrement}}</td>
+        </tr>
+        <tr>
+            <th>DATE D'AFFECTATION</th>
+            <td>{{personnel.date_affectation}}</td>
+        </tr>
+        <tr>
+            <th>STATUT</th>
+            <td>{{personnel.statut}}</td>
+        </tr>
+        <tr>
+            <th>CATEGORIE</th>
+            <td>{{personnel.categorie}}</td>
+        </tr>
+        <tr>
+            <th>TELEPHONE</th>
+            <td>{{personnel.telephone}}</td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>

@@ -8,6 +8,7 @@
 </title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="{% static 'assets/images/logoCI.jpeg' %}" type="image/png">
 <link rel="stylesheet" href="{% static 'assets/css/w3.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -43,9 +44,9 @@ footer{
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-list fa-fw"></i>MENU</button>
   {% comment %} <span class="w3-bar-item" style="margin-left: 40%;"><h1 style="font-weight: bold;">GESTION DU PERSONNEL</h1></span> {% endcomment %}
   <div style="display: flex;justify-content: space-around;">  
-    <div class="w3-bar-item"><img  width=25% heigth=30% src="{% static 'assets/images/logoCI.jpeg' %}" alt="LOGO"> </div> 
+    <div class="w3-bar-item"><img  width=25% heigth=30% src="{% static 'assets/images/logo.png' %}" alt="LOGO"> </div> 
     <div class="w3-bar-item"><h3 style="text-align:center; color:white; font-weight:bold;">GESTION DU PERSONNEL DE L'UNIVERSITE GAMAL ABDEL NASSER DE CONAKRY </h3>   </div> 
-    <div class="w3-bar-item"><img  width=25% heigth=30% src="{% static 'assets/images/logo.png' %}" alt="LOGO" class="w3-right"> </div> 
+    <div class="w3-bar-item"><img  width=25% heigth=30% src="{% static 'assets/images/logoCI.jpeg' %}" alt="LOGO" class="w3-right"> </div> 
   </div>
 </div>
 
@@ -83,11 +84,11 @@ footer{
         <span class="w3-opacity w3-large"> <i class="fa fa-eye "></i> Historique</span>
       </div>
     </a>
-    <a href="inscritformation" class="w3-bar-item w3-button w3-border-bottom test " >
+    {% comment %} <a href="inscritformation" class="w3-bar-item w3-button w3-border-bottom test " >
       <div class="w3-container">
         <span class="w3-opacity w3-large"> <i class="fa fa-file "></i> Inscription</span>
       </div>
-    </a>
+    </a> {% endcomment %}
   </div>
     <a id="myBtn" onclick="myFunc('Demo2')" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>DOCUMENT ADMINISTRATIF<i class="fa fa-caret-down w3-margin-left"></i></a>
   <div id="Demo2" class="w3-hide w3-animate-left">

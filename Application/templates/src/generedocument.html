@@ -76,7 +76,7 @@
     color: white;
   }
 {% endblock styles %}
-    
+     
 {% block content %}
 <div id="containerDocumentAnalytique">
     <div class="DocumentAnalytique">
@@ -85,10 +85,12 @@
     </header>
     <nav>
         <ul>
-            <h2>Pour quel type de lettre ou Document ?</h2> 
-          {% for tlettre in tlettres %}
+            <h2>Pour quel type de lettre ou Document ?</h2>
+            <h3>Les documents de types lettre Ordinaire</h3>
+            {% for tlettre in tlettres %}
             <li><a href="{% url 'genereDocL' tlettre.id %}">{{tlettre.nom}}</a></li>
-          {% endfor %}
+            {% endfor %}
+            <h3>Les documents de types lettre Bancaire</h3>
           {% for tbanque in tbanques %}
             <li><a href="{% url 'genereDocB' tbanque.id %}">{{tbanque.nom}}</a></li>
           {% endfor %}

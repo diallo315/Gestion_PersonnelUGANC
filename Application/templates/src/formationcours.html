@@ -52,7 +52,31 @@
 <div class="w3-container">
     <h2 style="font-weight: bold; text-align:center; margin-top:20px">La Liste des Personnels en Cours de Formation</h2>
     <div class="ContainerRechercher" style="display:flex; flex-direction:column">
-        <div>
+        <div style="margin-bottom: 1%;">
+            
+            {% if message_erreur %}
+                <div class="w3-panel w3-red">
+                    <h3>Danger !</h3>
+                    <p>{{ message_erreur }}</p>
+                </div> 
+            {% endif %}
+            {% if message_success %}
+                <div class="w3-panel w3-green">
+                    <h3>Success !</h3>
+                  <p>{{ message_success }}</p>
+                </div> 
+            {% endif %}
+            <form action="#" method="post" class="formContainer w3-left">
+                {% csrf_token %}
+                <select name="formationEncours" id="" class="selectFilter">
+                    <option value="none">Sélectionner une formation</option>
+                    {% for pFormation in programmes_formation %}
+                    <option value="{{ pFormation.id }}">{{ pFormation.nom }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="buttonSearchPersonnel">TERMINER</button>
+            </form>
+
             <form action="" class="formContainer w3-right" >
                 <input type="text" placeholder="Rechercher..." class="inputPersonne">
                 <select name="" id="" class="selectFilter">

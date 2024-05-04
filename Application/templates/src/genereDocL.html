@@ -13,19 +13,28 @@
     
 
 {% block content %}
-    <form action="{% url 'ajoutconge' %}" method="POST" id="Ajoutconge" class="GenereDoc">
+
+{% if message_success != "" %}
+    <h2>{{message_success}}</h2>
+{% endif %}
+    
+    <form action="#" method="POST" id="Ajoutconge" class="GenereDoc">
         {% csrf_token %}
         <h1>GENERER UN DOCUMENT</h1>
         <h3>{{tlettre.nom}}</h3>
+        <select name="matricule" id="" class="selectFilter">
+            <option value="all">Selectionner un matricule</option>
+            {% for matricule in matricules %}
+                <option value="{{matricule.matricule}}">{{matricule.matricule}}</option>
+            {% endfor %}
+                
+        </select>
 
-        <label for="matricule">Matricule du personnel</label>
-        <input type="text" placeholder="Entrez le matricule du personnel" name="matricule" required>
-
-        <label for="dateD">Date du Jour</label>
-        <input type="date" placeholder="Entrez la date jour " name="dateD" required>
+        <label for="dateJour">Date du Jour</label>
+        <input type="date" name="dateJour" required>
         
-        <input type="checkbox" name="remember">
         <label> Confirmez-vous la Gestion du Document </label>
+        <input type="checkbox" name="remember" required>
 
         <button type="submit">GENERER</button>
         <button type="button" class="cancel" onclick="cancelForm()">ANNULER</button>

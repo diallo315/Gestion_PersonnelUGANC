@@ -1,6 +1,8 @@
 # Application/urls.py
 from django.urls import path
 from .views import *
+from .filepdf import *
+from .viewsgraphique import *
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
@@ -24,7 +26,24 @@ urlpatterns = [
     path('ajoutdocument/<int:id>', ajoutdocument, name='ajoutdocument'),
     path('typedocument/<int:id>', typedocument, name='typedocument'),
     path('delconge/<int:id>/',delete_conge,name="delete_conge"),
-    path('formationTer/<int:id>/', formation_terminer, name="formation_terminer")
+
+    path('detailAnalytiqueL/<int:id>/', detailAnalytiqueL, name="detailAnalytiqueL"),
+    path('detailAnalytiqueB/<int:id>/', detailAnalytiqueB, name="detailAnalytiqueB"),
+
+
+    # ===============================URL DOCUMENT PDF ==================================
+    path('downloadPersonnel', DownloadPDF_Personnel.as_view(), name="downloadPersonnel"),
+    path('ViewPersonnels', ViewPDF_Personnel.as_view(), name="ViewPersonnels"),
+
+    path('downloadDetailPersonnel/<int:id>/', DownloadPDF_detailPersonnel.as_view(), name="downloadDetailPersonnel"),
+    path('ViewDetailPersonnel/<int:id>/', ViewPDF_detailPersonnel.as_view(), name="ViewDetailPersonnel"),
+
+    path('downloadDocBancaire/<int:id>/', DownloadPDF_docBancaire.as_view(), name="downloadDocBancaire"),
+    path('ViewDocBancaire/<int:id>/', ViewPDF_docBancaire.as_view(), name="ViewDocBancaire"),
+
+    path('downloadDocLettre/<int:id>/', DownloadPDF_docLettre.as_view(), name="downloadLettre"),
+    path('ViewDocLettre/<int:id>/', ViewPDF_docLettre.as_view(), name="ViewDocLettre"),
+    path('View_detail_personnel', View_detail_personne, name="View_detail_personnel"),
 ]
 
 # Ajouter ces lignes pour servir les fichiers médias pendant le développement

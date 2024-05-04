@@ -1,114 +1,11 @@
 # Application/views.py
-from django.shortcuts import render,get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from .models import *
-import matplotlib.pyplot as plt
-import io
-import base64
 from django.contrib.auth import authenticate, login, logout, get_user_model
+
 
 import matplotlib
 matplotlib.use('Agg')
-
-#=========================================TABLEAU DE BORD =========================================#
-
-def graphique_barresSexe():
-    # Exemple de données (à remplacer par vos données réelles)
-    labels = ['Homme', 'Femme']
-    values = [60, 40]
-
-    # Créer un graphe en barres
-    plt.bar(labels, values)
-    plt.xlabel('Sexe')
-    plt.ylabel('Values')
-    plt.title('Homme et Femme')
-    plt.grid(True)
-
-    # Convertir le graphique en image
-    image_stream = io.BytesIO()
-    plt.savefig(image_stream, format='png')
-    plt.close()
-
-    # Convertir l'image en base64
-    image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
-    return image_base64
-
-def graphique_circulaireSexe():
-    # Exemple de données (à remplacer par vos données réelles)
-    labels = ['Homme', 'Femme']
-    values = [60, 40]
-
-    # Personnaliser le graphique circulaire
-    colors = ['gold', 'lightcoral']
-
-    # Création d'un graphique circulaire
-    plt.pie(values, labels=labels, autopct='%1.1f%%', startangle=90, colors=colors)
-    plt.title('Homme et Femme')
-
-    # Convertir le graphique en image
-    image_stream = io.BytesIO()
-    plt.savefig(image_stream, format='png')
-    plt.close()
-
-    # Convertir l'image en base64
-    image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
-    return image_base64
-
-def graphique_barresGrade():
-    # Exemple de données (à remplacer par vos données réelles)
-    labels = ['A1', 'A2','A3', 'B1', 'B2', 'C', 'CP']
-    values = [10, 15, 15, 20, 15, 10, 15]
-
-    # Créer un graphe en barres
-    plt.bar(labels, values)
-    plt.xlabel('Hiérarchie')
-    plt.ylabel('Values')
-    plt.title('Hiérarchie')
-    plt.grid(True)
-
-    # Convertir le graphique en image
-    image_stream = io.BytesIO()
-    plt.savefig(image_stream, format='png')
-    plt.close()
-
-    # Convertir l'image en base64
-    image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
-    return image_base64
-
-def graphique_circulaireGrade():
-    # Exemple de données (à remplacer par vos données réelles)
-    labels = ['A1', 'A2','A3', 'B1', 'B2', 'C', 'CP']
-    values = [10, 15, 15, 20, 15, 10, 15]
-
-    # Personnaliser le graphique circulaire
-    colors = ['#0f4c5c', '#e36414', '#fb8b24', '#c1121f', '#9a031e', '#5f0f40', '#eae2b7', '#fcbf49']
-
-    # Création d'un graphique circulaire
-    plt.pie(values, labels=labels, autopct='%1.1f%%', startangle=90, colors=colors)
-    plt.title('Hiérarchie')
-
-    # Convertir le graphique en image
-    image_stream = io.BytesIO()
-    plt.savefig(image_stream, format='png')
-    plt.close()
-
-    # Convertir l'image en base64
-    image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
-    return image_base64
-
-def dashboard(request):
-    # Appeler les fonctions de graphique
-    graphique_barres_sexe = graphique_barresSexe()
-    graphique_circulaire_sexe= graphique_circulaireSexe()
-    graphique_barres_grade = graphique_barresGrade()
-    graphique_circulaire_grade = graphique_circulaireGrade()
-    
-    context = {
-        'graphique_barres_sexe': graphique_barres_sexe,
-        'graphique_circulaire_sexe': graphique_circulaire_sexe,
-        'graphique_barres_grade': graphique_barres_grade,
-        'graphique_circulaire_grade': graphique_circulaire_grade
-    }
-    return render(request, 'src/dashboard.html', context)
 
 #==========================CONNEXION ET INSCRIPTION ==============================#
 def loginsignup(request):
@@ -119,14 +16,14 @@ def loginsignup(request):
     if request.method == "POST":
         try:
             is_connexion = request.POST.get("is_connexion")
-            print(is_connexion)
+            # print(is_connexion)
             if is_connexion == 'on':
                 emailrecu = request.POST.get("mail")
                 password1 = request.POST.get("password1")
                 user_connect = authenticate(request, username=emailrecu, password=password1)
                 
                 if user_connect:
-                    print("j'ai authentifie " + emailrecu + " avec le mot de passe "+ password1)
+                    # print("j'ai authentifie " + emailrecu + " avec le mot de passe "+ password1)
                     login(request, user_connect)
                     return redirect('dashboard')
                 else:
@@ -289,18 +186,59 @@ def documentCAT(request, id):
 
 #===============================DOCUMENT GENERE ===================================================#
 def genereDocL(request, id):
+    message_success=""
     tlettre = TypeLettre.objects.get(id=id)
+    personnels = Personnel.objects.all()
     context = {
         'tlettre' : tlettre,
+        'matricules' : personnels,
+        'message_success': message_success
+
     }
+    
+    if request.method == "POST":
+        matricule = request.POST.get("matricule")
+        dateJour = request.POST.get("dateJour")
+        personnel = Personnel.objects.get(matricule = matricule)
+        lettre = Lettre(
+            personnel = personnel,
+            typelettre = tlettre,
+            datejour = dateJour
+        )
+        lettre.save()
+        message_success = "Enregistres avec succès ! "
+        return render(request, 'src/genereDocL.html', {'message_success': message_success})
+    
     return render(request, 'src/genereDocL.html', context)
 
 #===============================DOCUMENT GENERE ===================================================#
 def genereDocB(request, id):
-    tbanque = TypeBanque.objects.get(id = id)
+    message_success =""
+    tbanque = TypeBanque.objects.get(id=id)
+    personnels = Personnel.objects.all()
     context = {
-        'tbanque':tbanque,
+        'tbanque': tbanque,
+        'matricules': personnels,
+        'message_success': message_success
     }
+
+    if request.method == "POST":
+        matricule = request.POST.get("matricule")
+        nomBanque = request.POST.get("nombanque")
+        numeroBanque = request.POST.get("numerobanque")
+        datejour = request.POST.get("dateJour")
+        personnel = Personnel.objects.get(matricule = matricule)
+        lettreBanque = LettreBanque(
+            personnel = personnel,
+            nombanque = nomBanque,
+            numerobanque = numeroBanque,
+            typebanque = tbanque,
+            datejour = datejour
+        )
+        lettreBanque.save()
+        message_success = "Enregistré avec succès ! "
+        return render(request, 'src/genereDocB.html', {'message_success': message_success})
+
     return render(request, 'src/genereDocB.html', context)
 
 #===================================DOCUMENT ANALYTIQUE===================================#
@@ -312,6 +250,29 @@ def documentanalytique(request):
         'tbanques':tbanque,
     }
     return render(request, 'src/documentanalytique.html', context)
+
+#===================================DETAIL DOCUMENT ANALYTIQUE LETTRE===================================#
+def detailAnalytiqueL(request, id):
+    tlettre = TypeLettre.objects.get(id= id)
+    lettre = Lettre.objects.filter(typelettre = tlettre)
+    trouve = len(lettre) > 0 
+    context = {
+        'lettres':lettre,
+        'trouver': trouve,
+        'tlettre': tlettre
+    }
+    return render(request, 'src/detailDocAnalytiqueL.html', context)
+#===================================DOCUMENT ANALYTIQUE===================================#
+def detailAnalytiqueB(request, id):
+    tbanque = TypeBanque.objects.get(id=id)
+    lettreBancaire = LettreBanque.objects.filter(typebanque = tbanque)
+    trouve = len(lettreBancaire) > 0
+    context = {
+        'lettrebancaires':lettreBancaire,
+        'trouver': trouve,
+        'tbanque': tbanque
+    }
+    return render(request, 'src/detailDocAnalytiqueB.html', context)
 
 #===================================GENERER UN DOCUMENT ===================================#
 def generedocument(request):
@@ -334,7 +295,6 @@ def conge(request):
 
 #==========================================AJOUT D'UN CONGE ======================================#
 def ajoutconge(request):
-    conges_existant = ""
     conges_success = ""
     
     if request.method == 'POST':
@@ -356,11 +316,7 @@ def ajoutconge(request):
             return render(request, 'src/conge.html', {'conges_success':conges_success})
        except:
            pass
-       #verfie_matricule = Conge.objects.filter(personnel.matricule = matricu
-       # le)
-    #    conge = Conge(
-    #        personnel.matricule = 
-    #    )
+       
     return render(request, 'src/ajoutconge.html')
 
 #===================================INSCRIPTION A UNE FORMATION ===================================#
@@ -377,16 +333,46 @@ def historique(request):
 
 #=========================================FORMATIONS EN COURS =========================================#
 def formationcours(request):
+    message_erreur = ""
+    message_success = ""
+    if request.method == "POST":
+        programmeFormation = request.POST.get('formationEncours')
+        print(programmeFormation)
+        if programmeFormation == "none":
+            message_erreur = "Aucune formation n'a été selectionne ! "
+        else:
+            programmeFormationTrouve = ProgrammeFormation.objects.get(id = programmeFormation)
+            print(programmeFormationTrouve)
+            formationTerminer = Formation.objects.filter(programmeFormation = programmeFormationTrouve)
+            print(formationTerminer)
+            for formation in formationTerminer:
+                hFormation, created = HFormation.objects.get_or_create(
+                    personnel=formation.personnel, 
+                    programmeFormation = formation.programmeFormation,
+                    defaults={"observation": "Formation " + str(programmeFormationTrouve) + " terminée."}
+                )
+                if created:
+                    print(created)
+                    hFormation.save()
+
+                # Supprimer la formation de la base de données
+                formation.delete()
+            message_success = "Formation terminée avec succès !"
+            
     formation = Formation.objects.all()
+    programmes_formation_ids = Formation.objects.values_list('programmeFormation', flat=True).distinct()
+    programmes_formation = ProgrammeFormation.objects.filter(id__in=programmes_formation_ids)
+
     context = {
-        'formations':formation,
+        'programmes_formation': programmes_formation,
+        'formations': formation,
+        'message_erreur': message_erreur,
+        'message_success': message_success
     }
     return render(request, 'src/formationcours.html', context)
-
-#=========================================FORMATIONS EN COURS =========================================#
+#=========================================DECONNEXION  =========================================#
 def templates(request):
     messageDeconnexion = ""
-    print("je suis la")
     if request.method == 'POST':
         deconnexion = request.POST.get('is_deconnect')
         print("JE SUIS DEDANS ET VOICI L'ETAT DE DECONNEXION " + deconnexion )
@@ -395,6 +381,7 @@ def templates(request):
             return render(request, 'src/loginSignup.html', {'messageDeconnexion': messageDeconnexion})
     return render(request, 'template.html')
 
+#=========================================SUPPRIME UN CONGE =========================================#
 
 def delete_conge(request, id):
     conge = Conge.objects.get(id=id)
@@ -402,17 +389,7 @@ def delete_conge(request, id):
     return redirect('conge')
 
 
-def formation_terminer(request, id):
-    print("je suis dedans")
-    formationcours = get_object_or_404(Formation,id=id)
-    print("je suis passe ici")
-    try:
-
-        formation = HFormation.create(formationcours)
-        print("je suis passe encors ")
-        formation.save()
-        print("j'ai enregistrer")
-    except:
-        message_erreur = "Enregistrement échoué"
-    formationcours.delete()
-    return redirect('formationcours')
+# ====================================== TEST POUR AFFICHER LE VIEW ==============================
+def View_detail_personne(request):
+    return render(request, 'src/pdf/detailPersonnel.html')
+    

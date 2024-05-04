@@ -112,6 +112,9 @@
             <td>{{personnel.telephone}}</td>
         </tr>
     </table>
+    <button><a href="{% url 'downloadDetailPersonnel' personnel.id %}"> Download PDF</a></button>
+    <button><a href="{% url 'ViewDetailPersonnel' personnel.id %}"> Voir Le Personnel </a></button>
+    <button><a href="{% url 'View_detail_personnel' %}"> Voir detail </a></button>
 </div>
   {% endblock content %}
     

@@ -101,6 +101,7 @@ class Lettre(models.Model):
     datejour = models.DateField()
     class Meta:
         db_table = 'T_Lettre'
+        unique_together = ('personnel', 'typelettre', 'datejour')
 
 class TypeBanque(models.Model):
     nom = models.CharField(max_length = 50)
@@ -147,7 +148,8 @@ class Formation(models.Model):
         unique_together = ('personnel',)
 
 class HFormation(models.Model):
-    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
+    personnel = models.ForeignKey(Personnel, on_delete=models.SET_NULL, null=True)
+    programmeFormation = models.ForeignKey(ProgrammeFormation, on_delete = models.CASCADE)
     observation = models.CharField(max_length=50)
     class Meta:
         db_table = 'T_HFormation'

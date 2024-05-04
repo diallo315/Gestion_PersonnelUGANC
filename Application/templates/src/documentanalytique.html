@@ -77,11 +77,13 @@
     </header>
     <nav>
         <ul>
+          <h3>Les Types de Lettre Ordinaires</h3>
           {% for tlettre in tlettres %}
-            <li><a href="#">{{tlettre.nom}}</a></li>
+            <li><a href="{% url 'detailAnalytiqueL' tlettre.id %}">{{tlettre.nom}}</a></li>
           {% endfor %}
+          <h3>Les Types de Lettre Bancaire</h3>
           {% for tbanque in tbanques %}
-            <li><a href="#">{{tbanque.nom}}</a></li>
+            <li><a href="{% url 'detailAnalytiqueB' tbanque.id %}">{{tbanque.nom}}</a></li>
           {% endfor %}
         </ul>
     </nav>
