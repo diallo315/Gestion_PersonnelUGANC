@@ -5,19 +5,18 @@ from django.views import View
 from xhtml2pdf import pisa
 from django.shortcuts import get_object_or_404
 from .models import *
+
+
 # =================================================== FONCTION DE GENERE DE PDF =================================
 
-
-
-
 def render_to_pdf(template_src, context_dict={}):
-	template = get_template(template_src)
-	html  = template.render(context_dict)
-	result = BytesIO()
-	pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
-	if not pdf.err:
-		return HttpResponse(result.getvalue(), content_type='application/pdf')
-	return None
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
 
 # ================================================ IMPRIMER PERSONNEL ===========================================
 
@@ -70,7 +69,7 @@ class DownloadPDF_detailPersonnel(View):
             'personnel' : personnel,
         }
 
-        pdf = render_to_pdf('src/pdf/detailPersonnel.html', context)
+        pdf = render_to_pdf('src/pdf/detailPersonnel.html.twig', context)
         if pdf:
             response = HttpResponse(pdf, content_type='application/pdf')
             filename = "DetailPersonne_%s.pdf" % ("12341231")
@@ -87,7 +86,7 @@ class ViewPDF_detailPersonnel(View):
             'personnel' : personnel,
         }
 
-        pdf = render_to_pdf('src/pdf/detailPersonnel.html', context)
+        pdf = render_to_pdf('src/pdf/detailPersonnel.html.twig', context)
         if pdf:
             response = HttpResponse(pdf, content_type='application/pdf')
             return response

@@ -1,0 +1,105 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block title %}
+    Conges
+{% endblock title %}
+
+{% block styles %}
+    .tablePersonnel {
+        border-collapse: collapse;
+        width: 100%;
+        margin: auto;
+    }
+
+    .tableContainer h4, .tableContainer h6 {
+        font-weight: bold;
+        text-align:center;
+    }
+
+    .tablePersonnel th, .tablePersonnel td {
+        border: 1px solid #555353;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .tablePersonnel th {
+        background-color: #5b0d28;
+        color: white;
+    }
+    .tableContainer {
+        margin-top: 20px;
+    }
+
+
+    .inputPersonne {
+    padding: 8px;
+    margin-bottom: 0px;
+    width: 200px;
+    }
+
+    .buttonSearchPersonnel {
+    padding: 8px;
+    margin-bottom: 0px;
+    }
+
+    .selectFilter {
+    padding: 8px;
+    margin-bottom: 0px;
+    }
+{% endblock styles %}
+    
+
+{% block content %}
+    <div class="w3-container">
+        <h2 style="font-weight: bold; text-align:center; margin-top:20px">La Liste des Personnels en Congés </h2>
+        <div class="ContainerRechercher" style="display:flex; flex-direction:column">
+            <div>
+                <form action="" class="formContainer w3-right" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="search_text" placeholder="Rechercher..." class="inputPersonne">
+                    <select name="values" id="" class="selectFilter">
+                        <option value="tous">Tous</option>
+                        <option value="matricule">Matricule</option>
+                        <option value="typeconges">Types Congés</option>
+                    </select>
+                    <button class="buttonSearchPersonnel">RECHERCHER</button>
+                </form>
+            </div>
+        </div>
+        <div style="border-bottom: 2px solid grey;"></div>
+    
+            <div style="margin-bottom: 20px;" class="tableContainer">         
+                <table class="tablePersonnel" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Matricule</th>
+                            <th>Nom et Prénom</th>
+                            <th>Type de Congés</th>
+                            <th>Date Début</th>
+                            <th>Date Fin</th>
+                            <th>Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for conge in conges %}
+                        <tr>
+                            <td> {{conge.personnel.matricule}} </td>
+                            <td> {{conge.personnel.nom}} {{conge.personnel.prenom}} </td>
+                            <td>{{conge.typeconges}}</td>
+                            <td>{{conge.dateDeb}}</td>
+                            <td> {{conge.dateFin}} </td>
+                            <td style="text-align:center;">
+                            <button>
+                                <a href="{% url 'conge_terminer' conge.id %}" style="padding-right:5px;" >Terminé...</a>
+                            </button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table> 
+            </div>           
+    </div>    
+
+{% endblock content %}
+    

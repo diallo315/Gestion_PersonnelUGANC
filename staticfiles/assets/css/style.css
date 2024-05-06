@@ -1,0 +1,405 @@
+
+/*===============================PAGE DU PERSONNEL=============================================================*/
+
+/*----------------------------------Tableau du personnel ----------------------------------*/
+.tablePersonnel {
+    border-collapse: collapse;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.tablePersonnel th, .tablePersonnel td {
+    border: 1px solid #555353;
+    text-align: center;
+    padding: 8px;
+    
+}
+
+.tablePersonnel th {
+    background-color: #5b0d28;
+    color:white;
+}
+
+.inputPersonne {
+    padding: 8px;
+    margin-bottom: 0px;
+    width: 200px;
+}
+
+.buttonSearchPersonnel {
+    padding: 8px;
+    margin-bottom: 0px;
+}
+
+.selectFilter {
+    padding: 8px;
+    margin-bottom: 0px;
+}
+
+/*----------------------------------Formulaire d'ajout d'un Personnel ------------------------------*/
+ 
+#AjoutPersonnelForm {
+  background-color: #f5f3f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Ajuster la largeur du formulaire selon les besoins */
+  max-width: 600px;
+  margin: auto;
+  /* animation: rotateForm 1s ease-in-out; */
+}
+
+
+/* @keyframes rotateForm {
+  0% {
+      transform: rotate(0deg);
+  }
+  25% {
+      transform: rotate(10deg);
+  }
+  
+} */
+
+#AjoutPersonnelForm label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+#AjoutPersonnelForm input,
+#AjoutPersonnelForm select,
+#AjoutPersonnelForm button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+#AjoutPersonnelForm button {
+  background-color: #5b0d28;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#AjoutPersonnelForm button.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+#AjoutPersonnelForm h1 {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: double 2px black;
+  padding-bottom: 10px;
+}
+
+/* Media query pour une disposition en mode tablette */
+@media (max-width: 767px) {
+  #AjoutPersonnelForm h1 {
+      font-size: 16px;
+  }
+}
+
+/*----------------------------------Modal de déconnexion -----------------------------------------------*/
+
+/* Full-width input fields */
+#idDeconnexion input[type=text], #idDeconnexion input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for sign in buttons */
+#idDeconnexion .loginbtn {
+  background-color: white;
+  color: #04AA6D;
+  width: auto;
+  padding: 10px 30px;
+  font-weight: bold;
+  border: 2px solid #04AA6D;
+  cursor: pointer;
+}
+
+#idDeconnexion .loginbtn:hover, #idDeconnexion .loginbtn:focus {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Extra styles for the cancel button */
+#idDeconnexion .cancelbtn {
+  width: auto;
+  padding: 10px 30px;
+  color:red;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: white;
+  border: 2px solid red;
+}
+
+#idDeconnexion .cancelbtn:hover, #idDeconnexion .cancelbtn:focus{
+  color: white;
+  background-color: red;
+}
+
+/* Center the image and position the close button */
+#idDeconnexion .imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+
+#idDeconnexion .containerS {
+  padding: 20px 16px;
+  display: flex;
+  justify-content: space-between;
+  background-color: lightgrey;
+}
+
+/* The Modal (background) */
+#idDeconnexion {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+#idDeconnexion .modal-content {
+  background-color: #fefefe;
+  margin: 0% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 30%; /* Could be more or less, depending on screen size */
+}
+
+/* Add Zoom Animation */
+#idDeconnexion .animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 500px) {
+#idDeconnexion .cancelbtn {
+     width: 100%;
+  }
+  #idDeconnexion  .modal-content {
+  margin: 2% auto 10% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 100%; /* Could be more or less, depending on screen size */
+}
+}
+
+/*-----------------------------------------D'autres css de la page personnelle -------------------------*/
+
+/* ===================================PAGE D'INSCRIPTION FORMATION========================================= */
+
+#InscritFormation {
+  background-color: #f5f3f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Ajuster la largeur du formulaire selon les besoins */
+  max-width: 600px;
+  margin: auto;
+  /* animation: rotateForm 1s ease-in-out; */
+}
+
+
+/* @keyframes rotateForm {
+  0% {
+      transform: rotate(0deg);
+  }
+  25% {
+      transform: rotate(360deg);
+  }
+  
+} */
+
+#InscritFormation label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+#InscritFormation input,
+#InscritFormation select,
+#InscritFormation button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+#InscritFormation button {
+  background-color: #5b0d28;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#InscritFormation button.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+#InscritFormation h1 {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: double 2px black;
+  padding-bottom: 10px;
+}
+
+/* Media query pour une disposition en mode tablette */
+@media (max-width: 767px) {
+  #InscritFormation h1 {
+      font-size: 16px;
+  }
+}
+
+/* ===========================PAGE DOCUMENT =================================== */
+
+#containerPersonnel {
+  background-color: #f5f3f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Ajuster la largeur du formulaire selon les besoins */
+  max-width: 800px;
+  margin: auto;
+}
+.documentContainer header {
+  background-color: #5b0d28;
+  color: white;
+  padding: 8px;
+  text-align: center;
+}
+
+.documentContainer nav {
+  background-color: #fff7ed;
+  border: 1px solid #ccc;
+  border-radius: 8px;   
+  width: 50%;
+  margin: auto;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.documentContainer nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.documentContainer nav ul li {
+  margin-bottom: 10px;
+}
+
+.documentContainer nav ul li a {
+  display: block;
+  width: 93%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: #5b0d28;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.documentContainer nav ul li a:hover {
+  background-color: #5b0d28;
+  color: white;
+}
+
+/* ===========================PAGE CONGE =================================== */
+
+#Ajoutconge {
+  background-color: #f5f3f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Ajuster la largeur du formulaire selon les besoins */
+  max-width: 600px;
+  margin: auto;
+  /* animation: rotateForm 1s ease-in-out; */
+}
+
+
+/* @keyframes rotateForm {
+  0% {
+      transform: rotate(0deg);
+  }
+  25% {
+      transform: rotate(360deg);
+  }
+  
+} */
+
+#Ajoutconge label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+#Ajoutconge input,
+#Ajoutconge select,
+#Ajoutconge button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+#Ajoutconge button {
+  background-color: #5b0d28;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#Ajoutconge button.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+#Ajoutconge h1 {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: double 2px black;
+  padding-bottom: 10px;
+}
+
+/* Media query pour une disposition en mode tablette */
+@media (max-width: 767px) {
+  #Ajoutconge h1 {
+      font-size: 16px;
+  }
+}
+

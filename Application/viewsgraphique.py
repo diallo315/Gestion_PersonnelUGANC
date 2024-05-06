@@ -2,6 +2,7 @@ from django.shortcuts import render
 import matplotlib.pyplot as plt
 import io
 import base64
+from .models import *
 
 #=========================================TABLEAU DE BORD =========================================#
 
@@ -96,6 +97,10 @@ def dashboard(request):
     graphique_barres_grade = graphique_barresGrade()
     graphique_circulaire_grade = graphique_circulaireGrade()
     
+    nb_total_personnel = Personnel.objects.count()
+    nb_total_conge = Conge.objects.count()
+    
+
     context = {
         'graphique_barres_sexe': graphique_barres_sexe,
         'graphique_circulaire_sexe': graphique_circulaire_sexe,

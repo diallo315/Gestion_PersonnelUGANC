@@ -68,38 +68,39 @@ def loginsignup(request):
     return render(request, 'loginSignup.html', context)
 #==================================PERSONNEL ============================================#
 def personnel(request): 
-    
+    is_cat = False
     if request.method == "POST":
         cat = request.POST.get('cat')
         searchField = request.POST.get('searchField')
-
-        if cat == "ag":
+        if cat == 'ag':
             administrationGeneral = AdministrationGeneral.objects.filter(nom=searchField)
             personnel = Personnel.objects.all()
             categorie = Categorie.objects.all()
-        elif cat == "matricule":
-            administrationGeneral = AdministrationGeneral.objects.all()
-            personnel = Personnel.objects.filter( matricule = searchField)
-            categorie = Categorie.objects.all()
-        elif cat == "faculte":
-            administrationGeneral = AdministrationGeneral.objects.all()
-            personnel = Personnel.objects.all()
-            categorie = Categorie.objects.filter(nomcategorie = searchField)
+        elif cat == 'matricule':
+            personnel = Personnel.objects.get(matricule=searchField)
+            return detailspersonnel(request, personnel.id)
+        elif cat == 'faculte':
+            administrationGeneral =  ""
+            categorie = Categorie.objects.filter(nomcategorie=searchField)
+            categorie_ids = categorie.values_list('id', flat=True)  # Extraire les IDs des catégories filtrées
+            personnel = Personnel.objects.filter(categorie__in=categorie_ids)
+            is_cat = True
         else:
-            personnel = Personnel.objects.all()
             administrationGeneral = AdministrationGeneral.objects.all()
+            personnel = Personnel.objects.all()
             categorie = Categorie.objects.all()
     else:
-        personnel = Personnel.objects.all()
         administrationGeneral = AdministrationGeneral.objects.all()
+        personnel = Personnel.objects.all()
         categorie = Categorie.objects.all()
     
     context = {
+        'is_cat': is_cat,
         'personnels' : personnel, 
         'administrationGenerals' : administrationGeneral,
         'categories': categorie,
     }
-    return render(request, 'src/personnel.html', context)
+    return render(request, 'src/personnels/personnel.html', context)
 
 #==================================DETAILS D'UN PERSONNEL ============================================#
 def detailspersonnel(request, id):
@@ -107,7 +108,7 @@ def detailspersonnel(request, id):
     context = {
         'personnel' : personnel, 
     }
-    return render(request, 'src/detailspersonnel.html', context)
+    return render(request, 'src/personnels/detailspersonnel.html.', context)
 
 
 #===============================DOCUMENT ===================================================#
@@ -116,7 +117,7 @@ def doucument(request):
     context = {
         'administrationGenerals' : administrationGeneral,
     }
-    return render(request, 'src/document.html', context)
+    return render(request, 'src/documents/document.html', context)
 
 #===============================TYPE DE DOCUMENT ===================================================#
 def typedocument(request, id):
@@ -126,7 +127,7 @@ def typedocument(request, id):
         'typedocuments' : typedocument,
         'categorie' : categorie,
     }
-    return render(request, 'src/typedocument.html', context)
+    return render(request, 'src/documents/typedocument.html', context)
 
 #===============================DOCUMENT ===================================================#
 def ajoutdocument(request, id):
@@ -150,7 +151,7 @@ def ajoutdocument(request, id):
                 )
                 document.save()
                 message_success = "Enrgistré avec succès"
-                return render(request, 'src/documentCAT.html', {'message_succes': message_success})
+                return render(request, 'src/documents/documentCAT.html', {'message_succes': message_success})
             else:
                 matricule_exist = "Cette personne n'existe dans votre Base donnée"
         else:
@@ -160,7 +161,7 @@ def ajoutdocument(request, id):
         'matricule_exist':matricule_exist,
         'accept': accept,
     }
-    return render(request, 'src/ajoutdocument.html', context)
+    return render(request, 'src/documents/ajoutdocument.html', context)
 
 #===============================DOCUMENT ADMINISTRATIF GENERAL ===================================================#
 def categorieag(request, id):
@@ -170,7 +171,7 @@ def categorieag(request, id):
         'categories' : categorie,
         'administrationgeneral' : administrationgeneral,
     }
-    return render(request, 'src/categorieAG.html', context)
+    return render(request, 'src/personnels/categorieAG.html', context)
 
 #===============================DOCUMENT CATEGORIE ===================================================#
 def documentCAT(request, id):
@@ -182,7 +183,7 @@ def documentCAT(request, id):
         'categorie':categorie,
         'documents' : document,
     }    
-    return render(request, 'src/documentCAT.html', context)
+    return render(request, 'src/documents/documentCAT.html', context)
 
 #===============================DOCUMENT GENERE ===================================================#
 def genereDocL(request, id):
@@ -207,9 +208,9 @@ def genereDocL(request, id):
         )
         lettre.save()
         message_success = "Enregistres avec succès ! "
-        return render(request, 'src/genereDocL.html', {'message_success': message_success})
+        return render(request, 'src/documents/genereDocL.html', {'message_success': message_success})
     
-    return render(request, 'src/genereDocL.html', context)
+    return render(request, 'src/documents/genereDocL.html', context)
 
 #===============================DOCUMENT GENERE ===================================================#
 def genereDocB(request, id):
@@ -237,9 +238,9 @@ def genereDocB(request, id):
         )
         lettreBanque.save()
         message_success = "Enregistré avec succès ! "
-        return render(request, 'src/genereDocB.html', {'message_success': message_success})
+        return render(request, 'src/documents/genereDocB.html', {'message_success': message_success})
 
-    return render(request, 'src/genereDocB.html', context)
+    return render(request, 'src/documents/genereDocB.html', context)
 
 #===================================DOCUMENT ANALYTIQUE===================================#
 def documentanalytique(request):
@@ -249,7 +250,7 @@ def documentanalytique(request):
         'tlettres':tlettre,
         'tbanques':tbanque,
     }
-    return render(request, 'src/documentanalytique.html', context)
+    return render(request, 'src/documents/documentanalytique.html', context)
 
 #===================================DETAIL DOCUMENT ANALYTIQUE LETTRE===================================#
 def detailAnalytiqueL(request, id):
@@ -261,7 +262,7 @@ def detailAnalytiqueL(request, id):
         'trouver': trouve,
         'tlettre': tlettre
     }
-    return render(request, 'src/detailDocAnalytiqueL.html', context)
+    return render(request, 'src/documents/detailDocAnalytiqueL.html', context)
 #===================================DOCUMENT ANALYTIQUE===================================#
 def detailAnalytiqueB(request, id):
     tbanque = TypeBanque.objects.get(id=id)
@@ -272,7 +273,7 @@ def detailAnalytiqueB(request, id):
         'trouver': trouve,
         'tbanque': tbanque
     }
-    return render(request, 'src/detailDocAnalytiqueB.html', context)
+    return render(request, 'src/documents/detailDocAnalytiqueB.html', context)
 
 #===================================GENERER UN DOCUMENT ===================================#
 def generedocument(request):
@@ -282,16 +283,28 @@ def generedocument(request):
         'tlettres':tlettre,
         'tbanques':tbanque,
     }
-    return render(request, 'src/generedocument.html', context)
+    return render(request, 'src/documents/generedocument.html', context)
 
 #==========================================CONGE ======================================#
 def conge(request):
-    conge = Conge.objects.all()
+    if request.method == "POST":
+        search_text = request.POST.get('search_text')
+        recherche = request.POST.get('values')
+        if recherche == "matricule":
+            personnel = Personnel.objects.get(matricule = search_text)
+            conge = Conge.objects.filter(personnel = personnel)
+        elif recherche == "typeconges":
+            conge = Conge.objects.filter(typeconges = search_text)
+        else :
+            conge = Conge.objects.all()
+    else:
+        conge = Conge.objects.all()
+        
        
-    context = {
+    context = { 
         'conges':conge,
     }
-    return render(request, 'src/conge.html', context)
+    return render(request, 'src/conges/conge.html', context)
 
 #==========================================AJOUT D'UN CONGE ======================================#
 def ajoutconge(request):
@@ -313,53 +326,80 @@ def ajoutconge(request):
             )
             conge.save()
             conges_success = "Congé enregistrer avec succcès ! On se retrouve le " + dateF + " "
-            return render(request, 'src/conge.html', {'conges_success':conges_success})
+            return render(request, 'src/conges/conge.html', {'conges_success':conges_success})
        except:
            pass
        
-    return render(request, 'src/ajoutconge.html')
+    return render(request, 'src/conges/ajoutconge.html')
 
 #===================================INSCRIPTION A UNE FORMATION ===================================#
 def inscritformation(request):
-    return render(request, 'src/inscritformation.html')
+    return render(request, 'src/formations/inscritformation.html')
 
 #===================================HISTORIQUE ========================================================#
-def historique(request):
-    Hformation = HFormation.objects.all()
+def historique_formation(request):
+
+    if request.method == "POST":
+        cond_recherche = request.POST.get('values')
+        recherche = request.POST.get('search_text')
+        if cond_recherche == "matricule":
+            personnel = Personnel.objects.get(matricule = recherche)
+            Hformation = HFormation.objects.filter(personnel = personnel)
+        elif cond_recherche == "programmeformation":
+            pFormation = ProgrammeFormation.objects.filter(nom = recherche)
+            Hformation = HFormation.objects.filter(programmeFormation__in = pFormation)
+        else:
+            Hformation = HFormation.objects.all()
+    else:
+        Hformation = HFormation.objects.all()
     context = {
         'Hformations':Hformation
     }
-    return render(request, 'src/historique.html', context)
+    return render(request, 'src/formations/historiqueFormation.html', context)
 
 #=========================================FORMATIONS EN COURS =========================================#
 def formationcours(request):
     message_erreur = ""
     message_success = ""
     if request.method == "POST":
-        programmeFormation = request.POST.get('formationEncours')
-        print(programmeFormation)
-        if programmeFormation == "none":
-            message_erreur = "Aucune formation n'a été selectionne ! "
+        checked = request.POST.get('is_check')
+        if checked:
+            cond_recherche = request.POST.get('values')
+            recherche = request.POST.get('search_text')
+            if cond_recherche == "matricule":
+                personnel = Personnel.objects.get(matricule = recherche)
+                formation = Formation.objects.filter(personnel = personnel)
+            elif cond_recherche == "programmeformation":
+                pFormation = ProgrammeFormation.objects.filter(nom = recherche)
+                formation = Formation.objects.filter(programmeFormation__in = pFormation)
+            else:
+                formation = Formation.objects.all()
         else:
-            programmeFormationTrouve = ProgrammeFormation.objects.get(id = programmeFormation)
-            print(programmeFormationTrouve)
-            formationTerminer = Formation.objects.filter(programmeFormation = programmeFormationTrouve)
-            print(formationTerminer)
-            for formation in formationTerminer:
-                hFormation, created = HFormation.objects.get_or_create(
-                    personnel=formation.personnel, 
-                    programmeFormation = formation.programmeFormation,
-                    defaults={"observation": "Formation " + str(programmeFormationTrouve) + " terminée."}
-                )
-                if created:
-                    print(created)
-                    hFormation.save()
+            programmeFormation = request.POST.get('formationEncours')
+            print(programmeFormation)
+            if programmeFormation == "none":
+                message_erreur = "Aucune formation n'a été selectionne ! "
+            else:
+                programmeFormationTrouve = ProgrammeFormation.objects.get(id = programmeFormation)
+                print(programmeFormationTrouve)
+                formationTerminer = Formation.objects.filter(programmeFormation = programmeFormationTrouve)
+                print(formationTerminer)
+                for formation in formationTerminer:
+                    hFormation, created = HFormation.objects.get_or_create(
+                        personnel=formation.personnel, 
+                        programmeFormation = formation.programmeFormation,
+                        defaults={"observation": "Formation " + str(programmeFormationTrouve) + " terminée."}
+                    )
+                    if created:
+                        print(created)
+                        hFormation.save()
 
-                # Supprimer la formation de la base de données
-                formation.delete()
-            message_success = "Formation terminée avec succès !"
-            
-    formation = Formation.objects.all()
+                    # Supprimer la formation de la base de données
+                    formation.delete()
+                message_success = "Formation terminée avec succès !"
+    else:
+        formation = Formation.objects.all()
+    
     programmes_formation_ids = Formation.objects.values_list('programmeFormation', flat=True).distinct()
     programmes_formation = ProgrammeFormation.objects.filter(id__in=programmes_formation_ids)
 
@@ -369,7 +409,7 @@ def formationcours(request):
         'message_erreur': message_erreur,
         'message_success': message_success
     }
-    return render(request, 'src/formationcours.html', context)
+    return render(request, 'src/formations/formationcours.html', context)
 #=========================================DECONNEXION  =========================================#
 def templates(request):
     messageDeconnexion = ""
@@ -381,15 +421,58 @@ def templates(request):
             return render(request, 'src/loginSignup.html', {'messageDeconnexion': messageDeconnexion})
     return render(request, 'template.html')
 
-#=========================================SUPPRIME UN CONGE =========================================#
+#=========================================SUPPRIME UN CONGE ET SAVE HCONGE =========================================#
 
-def delete_conge(request, id):
+def conge_fini(request, id):
     conge = Conge.objects.get(id=id)
+    hConge = HConge(
+        personnel = conge.personnel,
+        typeconges = conge.typeconges,
+        dateDeb = conge.dateDeb, 
+        dateFin = conge.dateFin, 
+        observation = "validé"
+    )
+    hConge.save()
     conge.delete()
     return redirect('conge')
+
+#=========================================SUPPRIME UN CONGE ET SAVE HCONGE =========================================#
+
+def delete_hformation(request, id):
+    Hformation = HFormation.objects.get(id=id)
+    Hformation.delete()
+    return redirect('historique')
+
+# ====================================== HISTORIQUE DE CONGE ==============================
+
+def historique_conge(request):
+    if request.method == "POST":
+        cond_recherche = request.POST.get('values')
+        recherche = request.POST.get('search_text')
+        if cond_recherche == "matricule": 
+            personnel = Personnel.objects.get(matricule = recherche)
+            hconge = HConge.objects.filter(personnel = personnel)
+        elif cond_recherche == "typeconges": 
+            hconge = HConge.objects.filter(typeconges = recherche)
+        else:
+            hconge = HConge.objects.all()
+    else:
+        hconge = HConge.objects.all()
+    context = {
+        'hconges': hconge
+    }
+    return render(request, 'src/historiqueConges.html', context)
+
+
+# ====================================== DECONNEXION  ==============================
+def deconnexion(request):
+    logout(request)
+    return redirect('loginsignup')
 
 
 # ====================================== TEST POUR AFFICHER LE VIEW ==============================
 def View_detail_personne(request):
-    return render(request, 'src/pdf/detailPersonnel.html')
+    return render(request, 'src/pdf/detailPersonnel.html.twig')
+
+
     

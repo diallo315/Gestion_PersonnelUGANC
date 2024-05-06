@@ -24,6 +24,10 @@ class DocumentAdmin(admin.ModelAdmin):
 class CongeAdmin(admin.ModelAdmin):
     list_display = ['personnel', 'typeconges', 'dateDeb', 'dateFin']
 
+@admin.register(HConge)
+class HCongeAdmin(admin.ModelAdmin):
+    list_display = ['personnel', 'typeconges', 'dateDeb', 'dateFin', 'observation']
+
 @admin.register(ProgrammeFormation)
 class ProgrammeFormationAdmin(admin.ModelAdmin):
     list_display = ['nom', 'description', 'dateDeb', 'dateFin']

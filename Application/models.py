@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.forms import ValidationError
 from django.utils import timezone
 
 class Utilisateur(AbstractUser):
@@ -49,11 +50,24 @@ class Statut(models.Model):
         db_table = 'T_Statut'
 
 class Personnel(models.Model):
+    CHOIX_SEXE = [
+        ('M', 'Masculin'),
+        ('F', 'Féminin'),
+    ]
+    CHOIX_HIERARCHIE = [
+        ('A1', 'A1'),
+        ('A2', 'A2'),
+        ('A3', 'A3'),
+        ('B1', 'B1'),
+        ('B2', 'B2'),
+        ('C', 'C'),
+        ('CP', 'CP')
+    ]
     matricule = models.CharField(max_length=50)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
-    hierarchie = models.CharField(max_length=50)
-    sexe = models.CharField(max_length=50) 
+    hierarchie = models.CharField(max_length=50, choices=CHOIX_HIERARCHIE, default='CP')
+    sexe = models.CharField(max_length=50, choices=CHOIX_SEXE) 
     fonction = models.CharField(max_length=80)
     specialite = models.CharField(max_length=81)
     no_acte_affectation = models.CharField(max_length=50)
@@ -127,6 +141,26 @@ class Conge(models.Model):
     class Meta:
         db_table = 'T_Conge'
         unique_together = ('personnel', 'dateDeb', 'dateFin')
+    
+    def clean(self):
+        # Vérifier si la date de début est inférieure à la date de fin
+        if self.dateDeb >= self.dateFin:
+            raise ValidationError("La date de début doit être antérieure à la date de fin.")
+
+class HConge(models.Model):
+    personnel = models.ForeignKey(Personnel, on_delete=models.SET_NULL, null=True)
+    typeconges = models.CharField(max_length=50)
+    dateDeb = models.DateField()
+    dateFin = models.DateField()
+    observation = models.CharField(max_length=50)
+    
+    class Meta:
+        db_table = 'T_HConge'
+    
+    def clean(self):
+        # Vérifier si la date de début est inférieure à la date de fin
+        if self.dateDeb >= self.dateFin:
+            raise ValidationError("La date de début doit être antérieure à la date de fin.")
 
 class ProgrammeFormation(models.Model):
     nom = models.CharField(max_length=50)
@@ -137,6 +171,11 @@ class ProgrammeFormation(models.Model):
         return f'{self.nom}'
     class Meta:
         db_table = 'T_ProgrammeFormation'
+
+    def clean(self):
+        # Vérifier si la date de début est inférieure à la date de fin
+        if self.dateDeb >= self.dateFin:
+            raise ValidationError("La date de début doit être antérieure à la date de fin.")
 
 class Formation(models.Model):
     personnel = models.ForeignKey(Personnel, on_delete=models.CASCADE)

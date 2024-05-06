@@ -1,0 +1,134 @@
+{% extends 'template.html' %}
+{% block title %}
+  Détails du Personnel 
+{% endblock title %}
+
+{% block styles %}
+.containerdetailsPersonnel{
+    background-color: #f5f3f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Ajuster la largeur du formulaire selon les besoins */
+    max-width: 90%;
+    margin: auto;
+}
+.containerdetailsPersonnel h3 {
+    background-color: #5b0d28;
+    color: white;
+    padding: 8px;
+    text-align: center;
+  }
+  .containerdetailsPersonnel table{
+    width : 100%;
+    max-width:90%;
+    padding:20px;
+    margin:auto;
+    caption-side:bottom;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1), 0 0 50px rgba(0, 0, 0, 0.2);
+  }
+  .containerdetailsPersonnel table th{
+   text-align:left;
+  }
+  .containerdetailsPersonnel table td{
+   font-weight:none;
+  }
+  .containerdetailsPersonnel caption{
+   background-color: #5b0d28;
+   font-weight:bold;
+   color:white;
+  }
+{% endblock styles %}
+
+  {% block content %}
+  <div class="containerdetailsPersonnel">
+    <header>
+        <h3>Les informations de Mr/Mme <b>{{personnel.prenom}} {{personnel.nom}}<b></h3>
+    </header>
+    <table>
+        <caption>Détails du Personnel</caption>
+        <tr>
+            <th>MATRICULE</th>
+            <td>{{personnel.matricule}}</td>
+        </tr>
+        <tr>
+            <th>NOM</th>
+            <td>{{personnel.nom}}</td>
+        </tr>
+        <tr>
+            <th>PRENOM</th>
+            <td>{{personnel.prenom}}</td>
+        </tr>
+        <tr>
+            <th>SEXE</th>
+            <td>{{personnel.sexe}}</td>
+        </tr>
+        <tr>
+            <th>HIERARCHIE</th>
+            <td>{{personnel.hierarchie}}</td>
+        </tr>
+        <tr>
+            <th>FONCTION</th>
+            <td>{{personnel.fonction}}</td>
+        </tr>
+        <tr>
+            <th>SPECIALITE</th>
+            <td>{{personnel.specialite}}</td>
+        </tr>
+        <tr>
+            <th>N° AFFECTATION</th>
+            <td>{{personnel.no_acte_affectation}}</td>
+        </tr>
+        <tr>
+            <th>GRADE</th>
+            <td>{{personnel.grade}}</td>
+        </tr>
+        <tr>
+            <th>DIPLÔME</th>
+            <td>{{personnel.diplome}}</td>
+        </tr>
+        <tr>
+            <th>DATE DE NAISSANCE</th>
+            <td>{{personnel.dateNaissance}}</td>
+        </tr>
+        <tr>
+            <th>DATE D'ENREGISTREMENT</th>
+            <td>{{personnel.date_enregistrement|date:"d/m/Y"}}</td>
+        </tr>
+        <tr>
+            <th>DATE D'AFFECTATION</th>
+            <td>{{personnel.date_affectation|date:"d/m/Y"}}</td>
+        </tr>
+        <tr>
+            <th>STATUT</th>
+            <td>{{personnel.statut}}</td>
+        </tr>
+        <tr>
+            <th>CATEGORIE</th>
+            <td>{{personnel.categorie}}</td>
+        </tr>
+        <tr>
+            <th>TELEPHONE</th>
+            <td>{{personnel.telephone}}</td>
+        </tr>
+    </table>
+    <div style="margin-top: 10px;" class="w3-center">
+        <a href="{% url 'downloadDetailPersonnel' personnel.id %}">
+            <button class=" w3-button w3-hover-green w3-indigo w3-round-xxlarge w3-wide">
+                <i></i> <b>Téléchargé le PDF</b>
+             </button>
+        </a>
+        <a href="{% url 'ViewDetailPersonnel' personnel.id %}">
+            <button class=" w3-button w3-hover-green w3-indigo w3-round-xxlarge w3-wide">
+                <i></i> <b>Visualisé</b>
+             </button>
+        </a>
+        <a href="{% url 'View_detail_personnel' %}">
+            <button class=" w3-button w3-hover-aqua w3-indigo w3-round-xxlarge w3-wide">
+                <i></i> <b>Voir detail</b>
+             </button>
+        </a>
+    </div>
+</div>
+  {% endblock content %}
+    

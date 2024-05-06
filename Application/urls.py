@@ -7,14 +7,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('', loginsignup, name='loginsignup'),
+    path('deconnect', deconnexion, name='deconnect'),
+
     path('dashboard', dashboard, name='dashboard'),
     path('personnel', personnel, name='personnel'),
     #path('ajoutpersonnel', ajoutpersonnel, name='ajoutpersonnel'),
     path('document', doucument, name='document'),
     path('formationcours', formationcours, name='formationcours'),
-    path('historique', historique, name='historique'),
+    path('historique_formation', historique_formation, name='historique_formation'),
     path('inscritformation', inscritformation, name='inscritformation'),
-    path('conge', conge, name='conge'), 
+    path('conge', conge, name='conge'),
+    path('hconge', historique_conge, name='hconge'),
     path('ajoutconge', ajoutconge, name='ajoutconge'), 
     path('categorieag/<int:id>', categorieag, name='categorieag'), 
     path('documentcat/<int:id>', documentCAT, name='documentcat'), 
@@ -25,7 +28,8 @@ urlpatterns = [
     path('detailspersonnel/<int:id>', detailspersonnel, name='detailspersonnel'),
     path('ajoutdocument/<int:id>', ajoutdocument, name='ajoutdocument'),
     path('typedocument/<int:id>', typedocument, name='typedocument'),
-    path('delconge/<int:id>/',delete_conge,name="delete_conge"),
+    path('congeterminer/<int:id>/',conge_fini,name="conge_terminer"),
+    path('delhformation/<int:id>/',delete_hformation, name="delete_hformation"),
 
     path('detailAnalytiqueL/<int:id>/', detailAnalytiqueL, name="detailAnalytiqueL"),
     path('detailAnalytiqueB/<int:id>/', detailAnalytiqueB, name="detailAnalytiqueB"),
@@ -43,6 +47,8 @@ urlpatterns = [
 
     path('downloadDocLettre/<int:id>/', DownloadPDF_docLettre.as_view(), name="downloadLettre"),
     path('ViewDocLettre/<int:id>/', ViewPDF_docLettre.as_view(), name="ViewDocLettre"),
+
+
     path('View_detail_personnel', View_detail_personne, name="View_detail_personnel"),
 ]
 

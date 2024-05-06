@@ -4,7 +4,7 @@
 <head>
 <title>
   {% block title %}
-  {% endblock title %}
+  {% endblock title %} 
 </title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,15 +71,14 @@ footer{
     <a href=" {% url 'dashboard' %} " class="w3-bar-item w3-button w3-padding "><i class="fa fa-home fa-fw"></i> TABLEAU DE BORD</a>
     <a href="{% url 'personnel' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-male fa-fw"></i> PERSONNEL</a>
     <a href="{% url 'document' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw"></i> DOCUMENT</a>
-    <a href="{% url 'conge' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-car fa-fw"></i> CONGES</a>
     <a id="myBtn" onclick="myFunc('Demo1')" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>FORMATION<i class="fa fa-caret-down w3-margin-left"></i></a>
-  <div id="Demo1" class="w3-hide w3-animate-left">
+    <div id="Demo1" class="w3-hide w3-animate-left">
     <a href="{% url 'formationcours' %} " class="w3-bar-item w3-button w3-border-bottom test">
       <div class="w3-container">
         <span class="w3-opacity w3-large"> <i class="fa fa-refresh "></i> Formation en cours </span>
       </div>
     </a>
-    <a href="historique" class="w3-bar-item w3-button w3-border-bottom test " >
+    <a href="historique_formation" class="w3-bar-item w3-button w3-border-bottom test " >
       <div class="w3-container">
         <span class="w3-opacity w3-large"> <i class="fa fa-eye "></i> Historique</span>
       </div>
@@ -89,9 +88,22 @@ footer{
         <span class="w3-opacity w3-large"> <i class="fa fa-file "></i> Inscription</span>
       </div>
     </a> {% endcomment %}
-  </div>
+    </div>
+    <a id="myBtn" onclick="myFunc('Demo3')" class="w3-bar-item w3-button"><i class="fa fa-user w3-margin-right"></i>CONGES<i class="fa fa-caret-down w3-margin-left"></i></a>
+    <div id="Demo3" class="w3-hide w3-animate-left">
+    <a href="{% url 'conge' %}" class="w3-bar-item w3-button w3-border-bottom test">
+      <div class="w3-container">
+        <span class="w3-opacity w3-large"> <i class="fa fa-user w3-margin-right"></i>Congés encours </span>
+      </div>
+    </a>
+    <a href="{% url 'hconge' %}" class="w3-bar-item w3-button w3-border-bottom test " >
+      <div class="w3-container">
+        <span class="w3-opacity w3-large"> <i class="fa fa-user w3-margin-right "></i> Historique de congés</span>
+      </div>
+    </a>
+    </div>
     <a id="myBtn" onclick="myFunc('Demo2')" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>DOCUMENT ADMINISTRATIF<i class="fa fa-caret-down w3-margin-left"></i></a>
-  <div id="Demo2" class="w3-hide w3-animate-left">
+    <div id="Demo2" class="w3-hide w3-animate-left">
     <a href="{% url 'documentanalytique' %}" class="w3-bar-item w3-button w3-border-bottom test">
       <div class="w3-container">
         <span class="w3-opacity w3-large"> <i class="fa fa-refresh "></i> Documents Analytique </span>
@@ -102,8 +114,8 @@ footer{
         <span class="w3-opacity w3-large"> <i class="fa fa-file "></i> Généré un Document</span>
       </div>
     </a>
-  </div>
-    <a href="#" onclick="OpenModal()" style="width:auto;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  DECONNEXION</a>
+    </div>
+    <i onclick="OpenModal()" style="width:auto;" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  DECONNEXION</i>
   </div>
 </nav>
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -188,7 +200,7 @@ footer{
       </div>
       <div class="containerS">
         <div>
-          <a href="/loginSignup"><button type="submit" class="loginbtn">OUI</button></a>
+          <a href="{% url 'deconnect' %}"><button type="submit" class="loginbtn">OUI</button></a>
         </div>
         <div>
           <button type="button" onclick="CloseModal()" class="cancelbtn">NON</button>

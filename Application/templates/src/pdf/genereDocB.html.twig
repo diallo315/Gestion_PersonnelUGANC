@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,21 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generer un Document ! </title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
         .container {
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .person-details {
+            margin-top: 20px;
+        }
+
+        .detail {
+            margin-bottom: 10px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .value {
+            margin-left: 10px;
         }
     </style>
 </head> 
 <body>
     <div class="container">
-        <h2>Type de lettre :  </h2> <span>{{lBancaire.typebanque.nom}}</span>
-        <h4>Nom du proprietaire : </h4><span>{{lBancaire.personnel.nom}} {{lBancaire.personnel.prenom}}</span>
-        <h4>Matricule : </h4> <span>{{lBancaire.personnel.matricule}}</span>
-        <h4>Nom de la Banque : </h4> <span>{{lBancaire.nombanque}}</span>
-        <h4>Numero de la Banque : </h4> <span>{{lBancaire.numerobanque}}</span>
-        <h4>Fonction : </h4><span>{{lBancaire.personnel.fonction}}</span>
-        <h4>Date du Jour : </h4> <span>{{lBancaire.datejour}}</span>
+        <h2>Relevé Bancaire</h2>
+        <p>Cher/chère Responsables de la DRH,</p>
+        <p>Nous vous envoyons par la présente votre relevé bancaire pour la période [période couverte par le relevé, par exemple, "du 1er janvier au 31 mars 2024"]. 
+        Vous trouverez ci-joint les détails de toutes les transactions effectuées sur votre compte bancaire au cours de cette période.</p>
+        <p>[Insérez ici toute information spécifique sur le relevé bancaire, comme les soldes d'ouverture et de clôture, les dépôts, les retraits, les frais, etc.]</p>
+        <p>Si vous avez des questions ou des préoccupations concernant ce relevé, n'hésitez pas à nous contacter au <b>{{lBancaire.personnel.telephone}}</b> ou par email à [votre adresse email].
+         Nous serons heureux de vous aider à comprendre les détails de votre relevé bancaire.</p>
+        <p>Nous vous remercions pour votre confiance continue en notre banque.</p>
+        <p>Cordialement,</p>
+        <p><b>{{lBancaire.personnel.nom |upper }} {{lBancaire.personnel.prenom}}</b></p>
     </div>
 </body>
 </html>
