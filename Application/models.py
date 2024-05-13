@@ -128,7 +128,7 @@ class LettreBanque(models.Model):
     personnel = models.ForeignKey(Personnel, on_delete = models.CASCADE)
     nombanque = models.CharField(max_length = 50)
     numerobanque = models.CharField(max_length = 50)
-    typebanque = models.CharField(max_length = 50)
+    typebanque = models.ForeignKey(TypeBanque, on_delete= models.CASCADE)
     datejour = models.DateField()
     class Meta:
         db_table = 'T_LettreBanque'

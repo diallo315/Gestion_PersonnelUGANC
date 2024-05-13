@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,27 +16,30 @@
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
         }
-        h2 {
-            text-align: center;
-        }
-        p {
-            margin-bottom: 15px;
+       h2 {
+            text-align: right;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Confirmation de [Objet de la Confirmation]</h2>
-        <p>Cher/chère [Nom du Destinataire],</p>
-        <p>Je vous écris pour confirmer [détails de ce qui est confirmé : par exemple, une réservation, une inscription, un rendez-vous, etc.]. Suite à notre récente conversation/téléphone/échange de courriels, je tiens à vous assurer que [détails de ce qui est confirmé] est bel et bien confirmé pour [date/heure/autre détails pertinents].</p>
-        <p>Si vous avez des questions ou des préoccupations supplémentaires, n'hésitez pas à me contacter par [votre méthode de contact préférée : téléphone, email, etc.]. Je reste à votre disposition pour toute information complémentaire.</p>
-        <p>Je vous remercie de votre confiance et de votre coopération.</p>
-        <p>Cordialement,</p>
-        <p>[Votre Nom]</p>
+        <p>
+        
+        </p>
+        <h1 style="text-align:center">{{lLettre.typelettre.nom}}</h1>
+        <p>
+        <span style="font-size: 16px; font-weight: bold;">Objet: {{lLettre.typelettre.nom}}</span>
+        <br><br><br>
+        <i style="padding-left:5px;">Madame l’Inspectrice Générale,</i><br>
+            Dans le cadre de l’assainissement de fichiers de gestion Administrative et salariale des Agents de la Fonction Publique,
+            je vous confirme que le titulaire du Matricule : <b>{{lLettre.personnel.matricule}}</b> est bel et bien Monsieur {{lLettre.personnel.nom}} {{lLettre.personnel.prenom}} {{lLettre.personnel.statut.nom}} au
+            Département de Biologie de la {{lLettre.personnel.categorie.nomcategorie}}de l’Université Gamal Abdel Nasser de Conakry.                                                                                                                       
+            Par conséquent, je vous saurais gré des dispositions que vous voudriez bien faire prendre par vos
+            services techniques afin de diligenter le traitement du dossier de l’intéressé.
+            Vous en souhaitant bonne réception, veuillez croire, Madame l’Inspectrice Générale, l’assurance de ma franche collaboration.                                    
+        </p>
+        <h2 class="w3-right">Mme CAMARA Rougui</h2>
     </div>
 </body>
 </html>

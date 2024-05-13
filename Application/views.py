@@ -396,6 +396,7 @@ def formationcours(request):
 
                     # Supprimer la formation de la base de données
                     formation.delete()
+                formation = Formation.objects.all()
                 message_success = "Formation terminée avec succès !"
     else:
         formation = Formation.objects.all()
@@ -461,7 +462,7 @@ def historique_conge(request):
     context = {
         'hconges': hconge
     }
-    return render(request, 'src/historiqueConges.html', context)
+    return render(request, 'src/conges/historiqueConges.html', context)
 
 
 # ====================================== DECONNEXION  ==============================

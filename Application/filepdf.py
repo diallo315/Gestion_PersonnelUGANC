@@ -118,7 +118,7 @@ class ViewPDF_docBancaire(View):
         context = {
             'lBancaire' : lBancaire,
         }
-
+ 
         pdf = render_to_pdf('src/pdf/genereDocB.html.twig', context)
         if pdf:
             response = HttpResponse(pdf, content_type='application/pdf')
@@ -152,7 +152,7 @@ class ViewPDF_docLettre(View):
             'lLettre' : lLettre,
         }
 
-        pdf = render_to_pdf('src/pdf/genereDocB.html.twig', context)
+        pdf = render_to_pdf('src/pdf/genereDocL.html.twig', context)
         if pdf:
             response = HttpResponse(pdf, content_type='application/pdf')
             return response

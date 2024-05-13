@@ -67,7 +67,7 @@
            <div style="margin-bottom: 7px;">
                 <a href="{% url 'downloadPersonnel' %}" >
                     <button style="margin-left:5px;"  class="w3-right w3-button w3-hover-green w3-indigo w3-round-xxlarge w3-wide">
-                       <i></i> <b>Imprimer la liste</b> 
+                       <i></i> <b>Téléchargé la liste</b> 
                     </button>
                 </a>
                 <a href="{% url 'ViewPersonnels' %}">
@@ -82,8 +82,8 @@
                     <input type="text" name="searchField" placeholder="Rechercher..." class="inputPersonne" id="searchInput">
                     <select name="cat" id="" class="selectFilter">
                         <option value="all">Tous</option>
-                        <option value="ag">Administration Générale</option>
-                        <option value="faculte">Facultés</option>
+                        <option value="ag">Faculté</option>
+                        <option value="faculte">Département</option>
                         <option value="matricule">Matricule</option>
                     </select>
                     <button type="submit" class="buttonSearchPersonnel">RECHERCHER</button>
