@@ -30,11 +30,24 @@ footer{
   bottom: 0;
   width: 100%;
 }
+
 .menu a:hover, #Demo1 a:hover {
   background-color: #5b0d28 !important;
   color: white !important;
   
 }
+.mobile-title{
+  display: none;
+}
+@media (max-width: 900px) {
+    .mobile-title {
+        display: flex;
+    }
+    .desktop-title {
+      display: none;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -45,7 +58,13 @@ footer{
   {% comment %} <span class="w3-bar-item" style="margin-left: 40%;"><h1 style="font-weight: bold;">GESTION DU PERSONNEL</h1></span> {% endcomment %}
   <div style="display: flex;justify-content: space-around;">  
     <div class="w3-bar-item"><img  width=25% heigth=30% src="{% static 'assets/images/logo.png' %}" alt="LOGO"> </div> 
-    <div class="w3-bar-item"><h3 style="text-align:center; color:white; font-weight:bold;">GESTION DU PERSONNEL DE L'UNIVERSITE GAMAL ABDEL NASSER DE CONAKRY </h3>   </div> 
+    <div class="w3-bar-item">
+          <h3 class="desktop-title w3-wide" style="text-align:center; color:white; font-weight:bold;">
+              GESTION DU PERSONNEL DE L'UNIVERSITE GAMAL ABDEL NASSER DE CONAKRY
+          </h3>
+          <h3 class="mobile-title w3-wide" style="text-align:center; color:white; font-weight:bold;">
+              DRH
+      </div> 
     <div class="w3-bar-item"><img  width=25% heigth=30% src="{% static 'assets/images/logoCI.jpeg' %}" alt="LOGO" class="w3-right"> </div> 
   </div>
 </div>
@@ -59,7 +78,10 @@ footer{
       </a>
     </div>
     <div  >
-      <span style="padding-left:5%"><strong>Mariama Tanou KOKOUMA</strong></span><br>
+    
+    {% if user.is_authenticated %}
+      <span style="padding-left:5%"><strong>{{user.first_name}}  {{user.last_name}}</strong></span><br>
+      {% endif %}
     </div>
   </div>
   <hr>
@@ -68,6 +90,7 @@ footer{
   </div>
   <div class="w3-bar-block menu">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Fermer Menu</a>
+    
     <a href=" {% url 'dashboard' %} " class="w3-bar-item w3-button w3-padding "><i class="fa fa-home fa-fw"></i> TABLEAU DE BORD</a>
     <a href="{% url 'personnel' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-male fa-fw"></i> PERSONNEL</a>
     <a href="{% url 'document' %}" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file fa-fw"></i> DOCUMENT</a>
@@ -83,11 +106,6 @@ footer{
         <span class="w3-opacity w3-large"> <i class="fa fa-eye "></i> Historique</span>
       </div>
     </a>
-    {% comment %} <a href="inscritformation" class="w3-bar-item w3-button w3-border-bottom test " >
-      <div class="w3-container">
-        <span class="w3-opacity w3-large"> <i class="fa fa-file "></i> Inscription</span>
-      </div>
-    </a> {% endcomment %}
     </div>
     <a id="myBtn" onclick="myFunc('Demo3')" class="w3-bar-item w3-button"><i class="fa fa-user w3-margin-right"></i>CONGES<i class="fa fa-caret-down w3-margin-left"></i></a>
     <div id="Demo3" class="w3-hide w3-animate-left">
@@ -126,62 +144,6 @@ footer{
 {% endblock content %}
   
 <!-- END CONTENT! -->
-
-{% comment %} =================================== FOOTER ================================================
-<!-- FOOTER START -->
-<div class="footer">
-  <div class="contain">
-  <div class="col">
-    <h1>LE PRODUCTEUR DU SITE</h1>
-    <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
-    </ul>
-  </div>
-  <div class="col">
-    <h1>LES PARTIES PRENANTES</h1>
-    <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
-    </ul>
-  </div>
-  <div class="col">
-    <h1>LES RESPONSABLES DE LA DRH</h1>
-    <ul>
-      <li>About</li>
-      <li>Mission</li>
-      <li>Services</li>
-      <li>Social</li>
-      <li>Get in touch</li>
-    </ul>
-  </div>
-  <div class="col">
-    <h1>CONTACTER LE/LA DIRECTEUR(TRICE) DE LA RH</h1>
-    <ul>
-      <li>Webmail</li>
-      <li>Redeem code</li>
-      <li>WHOIS lookup</li>
-      <li>Site map</li>
-      <li>Web templates</li>
-      <li>Email templates</li>
-    </ul>
-  </div>
-  <div class="col social">
-    <h1>Réseau Social</h1>
-    <ul>
-      <li><img src="{% static 'assets/images/profil.png' %}"  style="width: 32px;"></li>
-      <li><img src="{% static 'assets/images/profil.png' %}"  style="width: 32px;"></li>
-      <li><img src="{% static 'assets/images/profil.png' %}"  style="width: 32px;"></li>
-    </ul>
-  </div>
-<div>{% endcomment %}
-<!-- END OF FOOTER -->
 <footer>
   <p>&copy; 2024 Université Gamal Abdel Nasser De Conakry</p>
 </footer>

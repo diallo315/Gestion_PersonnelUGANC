@@ -414,13 +414,17 @@ def formationcours(request):
 #=========================================DECONNEXION  =========================================#
 def templates(request):
     messageDeconnexion = ""
+    is_actif = True
     if request.method == 'POST':
         deconnexion = request.POST.get('is_deconnect')
         print("JE SUIS DEDANS ET VOICI L'ETAT DE DECONNEXION " + deconnexion )
         if deconnexion == 'on':
             messageDeconnexion = "Merci d'avoir connsulter l'application "
             return render(request, 'src/loginSignup.html', {'messageDeconnexion': messageDeconnexion})
-    return render(request, 'template.html')
+    context = {
+        'is_actif': is_actif
+    }
+    return render(request, 'template.html', context)
 
 #=========================================SUPPRIME UN CONGE ET SAVE HCONGE =========================================#
 

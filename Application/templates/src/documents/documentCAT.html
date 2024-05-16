@@ -15,6 +15,13 @@
     max-width: 90%;
     margin: auto;
 }
+@media screen and (max-width: 600px) {
+    .w3-quarter {
+        width: 100%;
+        margin: auto; /* Centrer les éléments */
+        display: block; /* Afficher en bloc */
+    }
+}
 .w3-quarter, .w3-quart{
     background-color: #f5f3f4;
     padding: 20px;
@@ -74,12 +81,15 @@ header {
         {% if documents %}
             {% for document in documents %}
                 <div class="w3-quarter">
-                    <div class="w3-container w3-padding-16">
+                    <div class="w3-container w3-padding-16 w3-third w3-border">
                         <div class="logoTelechargement"><img src="{% static 'assets/images/iconeDoc.png' %}" class="iconeTelechargement"></div>
                         <div class="w3-clear"></div>
                         <h4>{{document.personnel.nom}} {{document.personnel.prenom}}</h4>
                         <h4>{{document.typeDocument.typedocument}}</h4>
-                        <a href="{{document.document.url}}" download title = "Télécharger le document "> <button>Telechargé</button> </a>
+                        <a href="{{ document.document.url }}" download title="Télécharger le document">
+                            <button>Télécharger</button>
+                        </a>
+                        
                     </div>
                 </div>
             {% endfor %}

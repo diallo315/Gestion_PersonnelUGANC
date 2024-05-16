@@ -10,6 +10,23 @@
     width: 100%;
     margin: auto;
 }
+.etat .telechargeNone{
+    display: none;
+}
+@media screen and (max-width: 600px) {
+    .tableContainer {
+        overflow-x: auto;
+        display: block;
+        white-space: nowrap;
+    }
+    .etat .telecharge{
+        display:none;
+    }
+    .etat .telechargeNone{
+        display: block;
+    }
+    
+}
 
 .tableContainer h3, .tableContainer h6 {
     font-weight: bold;
@@ -64,15 +81,17 @@
     <div class="w3-container">
         <h2 style="font-weight: bold; text-align:center; margin-top:20px">GESTION PERSONNEL </h2>
         <div class="ContainerRechercher" style="display:flex; flex-direction:column">
-           <div style="margin-bottom: 7px;">
+           <div style="margin-bottom: 7px;" class="etat">
                 <a href="{% url 'downloadPersonnel' %}" >
                     <button style="margin-left:5px;"  class="w3-right w3-button w3-hover-green w3-indigo w3-round-xxlarge w3-wide">
-                       <i></i> <b>Téléchargé la liste</b> 
+                        <b class="telecharge">Téléchargé la liste</b>
+                        <b class="telechargeNone" >Téléchargé</b>
                     </button>
                 </a>
                 <a href="{% url 'ViewPersonnels' %}">
                     <button class="w3-right w3-button w3-hover-green w3-indigo w3-round-xxlarge w3-wide">
-                       <i></i> <b>Visualisé</b>
+                        <b class="telecharge">Visualisé</b>
+                        <b class="telechargeNone" >View</b>
                     </button>
                 </a>
             </div>

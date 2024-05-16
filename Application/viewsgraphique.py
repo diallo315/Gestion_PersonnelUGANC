@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 import matplotlib.pyplot as plt
 import io
 import base64
@@ -89,7 +90,7 @@ def graphique_circulaireGrade():
     # Convertir l'image en base64
     image_base64 = base64.b64encode(image_stream.getvalue()).decode('utf-8')
     return image_base64
-
+@login_required(login_url='/')
 def dashboard(request):
     # Appeler les fonctions de graphique
     graphique_barres_sexe = graphique_barresSexe()

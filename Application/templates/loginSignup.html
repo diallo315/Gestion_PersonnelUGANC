@@ -79,7 +79,7 @@
                 width: 100%;
                 border: none;
                 font-size: 16px;
-                font-weight: 400;
+                font-weight: 400px;
                 border-radius: 6px;
             }
 
@@ -135,11 +135,34 @@
                 text-decoration: underline;
             }
             
-            @media screen and (max-width: 400px) {
+            @media screen and (max-width: 700px) {
                 .form{
                     padding: 20px 10px;
                 }
+                #login-left{
+                    display: none;
+                }
+                
+                #login-right {
+                    width: 100%;
+                }
+                #login-right .container {
+                    padding: 0 20px; /* Ajoutez du padding si nécessaire pour l'espacement */
+                }
+                #login-right h1 {
+                    font-size: 24px; /* Ajustez cette taille selon vos besoins */
+                }
+                .field input{
+                    max-width: 400px;
+                    
+                }
+                
             
+            }
+            @media screen and( max-width: 400px){
+                .field input{
+                    width: 100px;
+                }
             }
             .forms h1{
                 text-align: center;
@@ -166,7 +189,7 @@
             </div>
             <div id="login-right">
               <section class="container forms">
-                <div style="margin:auto;">
+                <div style="margin:auto;" >
                     <h1>GESTION DU PERSONNEL DE L'UNIVERSITE GAMAL ABDEL NASSER DE CONAKRY</h1>
                 </div>
                 
